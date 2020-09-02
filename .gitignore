@@ -5,6 +5,8 @@
 *.csproj.user
 .vscode
 packages/
+[bB]in/
+[oO]bj/
 
 # Build Output
 [Dd]ebug/

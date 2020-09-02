@@ -1,0 +1,43 @@
+<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWindowsForms>true</UseWindowsForms>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RootNamespace>Assistant</RootNamespace>
+    <AssemblyName>Razor</AssemblyName>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\*.cs" />
+    <Compile Include="..\Agents\*.cs" />
+    <Compile Include="..\Boat\*.cs" />
+    <Compile Include="..\Client\*.cs" />
+    <Compile Include="..\Core\*.cs" />
+    <Compile Include="..\Filters\*.cs" />
+    <Compile Include="..\Gumps\*.cs" />
+    <Compile Include="..\Gumps\Internal\*.cs" />
+    <Compile Include="..\HotKeys\*.cs" />
+    <Compile Include="..\Macros\*.cs" />
+    <Compile Include="..\Map\*.cs" />
+    <Compile Include="..\Network\*.cs" />
+    <Compile Include="..\Properties\*.cs" />
+    <Compile Include="..\Scripts\*.cs" />
+    <Compile Include="..\Scripts\Engine\*.cs" />
+    <Compile Include="..\UI\*.cs" />
+    <Compile Include="..\UltimaSDK\*.cs" />
+    <EmbeddedResource Include="..\**\*.resx" />
+    <Reference Include="cuoapi">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\cuoapi.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\..\FastColoredTextBox\FastColoredTextBoxCore\FastColoredTextBoxCore.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Windows.Compatibility" Version="3.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>

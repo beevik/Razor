@@ -404,8 +404,17 @@ namespace Assistant
 
         private static string _rootPath = null;
 
-        public static string RootPath =>
-            _rootPath ?? (_rootPath = Path.GetDirectoryName(Assembly.GetAssembly(typeof(Engine)).Location));
+        public static string RootPath
+        {
+            get
+            {
+                if (_rootPath == null)
+                {
+                    _rootPath = Path.GetFullPath(Path.Combine(Path.GetDirectoryName(Assembly.GetEntryAssembly().Location), "Data", "Plugins", "Assistant"));
+                }
+                return _rootPath;
+            }
+        }
 
         /*public static string GetDirectory( string relPath )
         {

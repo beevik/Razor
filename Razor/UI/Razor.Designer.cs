@@ -332,17 +332,14 @@ namespace Assistant
             //
             InitializeComponent();
 
-            m_NotifyIcon.ContextMenu =
-                new ContextMenu(new MenuItem[]
-                {
-                    new MenuItem("Show Razor", new EventHandler(DoShowMe)),
-                    new MenuItem("Hide Razor", new EventHandler(HideMe)),
-                    new MenuItem("-"),
-                    new MenuItem("Toggle Razor Visibility", new EventHandler(ToggleVisible)),
-                    new MenuItem("-"),
-                    new MenuItem("Close Razor && UO", new EventHandler(OnClose))
-                });
-            m_NotifyIcon.ContextMenu.MenuItems[0].DefaultItem = true;
+            m_NotifyIcon.ContextMenuStrip = new ContextMenuStrip();
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Show Razor", null, new EventHandler(DoShowMe)));
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Hide Razor", null, new EventHandler(HideMe)));
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("-"));
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Toggle Razor Visibility", null, new EventHandler(ToggleVisible)));
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("-"));
+            m_NotifyIcon.ContextMenuStrip.Items.Add(new ToolStripMenuItem("Close Razor && UO", null, new EventHandler(OnClose)));
+            m_NotifyIcon.ContextMenuStrip.Items[0].Select();
         }
 
         /// <summary>
@@ -837,15 +834,15 @@ namespace Assistant
             this.groupBox16.SuspendLayout();
             this.aboutTab.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // m_NotifyIcon
-            // 
+            //
             this.m_NotifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("m_NotifyIcon.Icon")));
             this.m_NotifyIcon.Text = "Razor";
             this.m_NotifyIcon.DoubleClick += new System.EventHandler(this.NotifyIcon_DoubleClick);
-            // 
+            //
             // tabs
-            // 
+            //
             this.tabs.Controls.Add(this.generalTab);
             this.tabs.Controls.Add(this.moreOptTab);
             this.tabs.Controls.Add(this.displayTab);
@@ -870,18 +867,18 @@ namespace Assistant
             this.tabs.TabIndex = 0;
             this.tabs.SelectedIndexChanged += new System.EventHandler(this.tabs_IndexChanged);
             this.tabs.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tabs_KeyDown);
-            // 
+            //
             // generalTab
-            // 
+            //
             this.generalTab.Controls.Add(this.subGeneralTab);
             this.generalTab.Location = new System.Drawing.Point(4, 44);
             this.generalTab.Name = "generalTab";
             this.generalTab.Size = new System.Drawing.Size(519, 322);
             this.generalTab.TabIndex = 0;
             this.generalTab.Text = "General";
-            // 
+            //
             // subGeneralTab
-            // 
+            //
             this.subGeneralTab.Controls.Add(this.subGenTab);
             this.subGeneralTab.Location = new System.Drawing.Point(6, 3);
             this.subGeneralTab.Name = "subGeneralTab";
@@ -889,9 +886,9 @@ namespace Assistant
             this.subGeneralTab.Size = new System.Drawing.Size(510, 314);
             this.subGeneralTab.TabIndex = 63;
             this.subGeneralTab.SelectedIndexChanged += new System.EventHandler(this.subGeneralTab_IndexChanged);
-            // 
+            //
             // subGenTab
-            // 
+            //
             this.subGenTab.BackColor = System.Drawing.SystemColors.Control;
             this.subGenTab.Controls.Add(this.groupBox15);
             this.subGenTab.Controls.Add(this.clientPrio);
@@ -912,9 +909,9 @@ namespace Assistant
             this.subGenTab.Size = new System.Drawing.Size(502, 286);
             this.subGenTab.TabIndex = 0;
             this.subGenTab.Text = "General";
-            // 
+            //
             // groupBox15
-            // 
+            //
             this.groupBox15.Controls.Add(this.boatControl);
             this.groupBox15.Controls.Add(this.btnMap);
             this.groupBox15.Location = new System.Drawing.Point(273, 181);
@@ -923,9 +920,9 @@ namespace Assistant
             this.groupBox15.TabIndex = 77;
             this.groupBox15.TabStop = false;
             this.groupBox15.Text = "Map / Boat";
-            // 
+            //
             // boatControl
-            // 
+            //
             this.boatControl.Location = new System.Drawing.Point(119, 16);
             this.boatControl.Name = "boatControl";
             this.boatControl.Size = new System.Drawing.Size(96, 26);
@@ -933,18 +930,18 @@ namespace Assistant
             this.boatControl.Text = "Boat Control";
             this.boatControl.UseVisualStyleBackColor = true;
             this.boatControl.Click += new System.EventHandler(this.boatControl_Click);
-            // 
+            //
             // btnMap
-            // 
+            //
             this.btnMap.Location = new System.Drawing.Point(6, 16);
             this.btnMap.Name = "btnMap";
             this.btnMap.Size = new System.Drawing.Size(107, 26);
             this.btnMap.TabIndex = 67;
             this.btnMap.Text = "UOPS";
             this.btnMap.Click += new System.EventHandler(this.btnMap_Click);
-            // 
+            //
             // clientPrio
-            // 
+            //
             this.clientPrio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.clientPrio.Items.AddRange(new object[] {
             "Idle",
@@ -958,61 +955,61 @@ namespace Assistant
             this.clientPrio.Size = new System.Drawing.Size(125, 23);
             this.clientPrio.TabIndex = 73;
             this.clientPrio.SelectedIndexChanged += new System.EventHandler(this.clientPrio_SelectedIndexChanged);
-            // 
+            //
             // systray
-            // 
+            //
             this.systray.Location = new System.Drawing.Point(141, 118);
             this.systray.Name = "systray";
             this.systray.Size = new System.Drawing.Size(88, 23);
             this.systray.TabIndex = 69;
             this.systray.Text = "System Tray";
             this.systray.CheckedChanged += new System.EventHandler(this.systray_CheckedChanged);
-            // 
+            //
             // taskbar
-            // 
+            //
             this.taskbar.Location = new System.Drawing.Point(69, 118);
             this.taskbar.Name = "taskbar";
             this.taskbar.Size = new System.Drawing.Size(79, 23);
             this.taskbar.TabIndex = 68;
             this.taskbar.Text = "Taskbar";
             this.taskbar.CheckedChanged += new System.EventHandler(this.taskbar_CheckedChanged);
-            // 
+            //
             // langSel
-            // 
+            //
             this.langSel.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.langSel.Location = new System.Drawing.Point(371, 148);
             this.langSel.Name = "langSel";
             this.langSel.Size = new System.Drawing.Size(125, 23);
             this.langSel.TabIndex = 71;
             this.langSel.SelectedIndexChanged += new System.EventHandler(this.langSel_SelectedIndexChanged);
-            // 
+            //
             // label7
-            // 
+            //
             this.label7.Location = new System.Drawing.Point(241, 150);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(68, 18);
             this.label7.TabIndex = 70;
             this.label7.Text = "Language:";
-            // 
+            //
             // label11
-            // 
+            //
             this.label11.Location = new System.Drawing.Point(9, 122);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(54, 16);
             this.label11.TabIndex = 67;
             this.label11.Text = "Show in:";
-            // 
+            //
             // showWelcome
-            // 
+            //
             this.showWelcome.Location = new System.Drawing.Point(14, 181);
             this.showWelcome.Name = "showWelcome";
             this.showWelcome.Size = new System.Drawing.Size(152, 23);
             this.showWelcome.TabIndex = 66;
             this.showWelcome.Text = "Show Welcome Screen";
             this.showWelcome.CheckedChanged += new System.EventHandler(this.showWelcome_CheckedChanged);
-            // 
+            //
             // opacity
-            // 
+            //
             this.opacity.AutoSize = false;
             this.opacity.Cursor = System.Windows.Forms.Cursors.SizeWE;
             this.opacity.Location = new System.Drawing.Point(97, 150);
@@ -1025,34 +1022,34 @@ namespace Assistant
             this.opacity.TickStyle = System.Windows.Forms.TickStyle.None;
             this.opacity.Value = 100;
             this.opacity.Scroll += new System.EventHandler(this.opacity_Scroll);
-            // 
+            //
             // alwaysTop
-            // 
+            //
             this.alwaysTop.Location = new System.Drawing.Point(14, 210);
             this.alwaysTop.Name = "alwaysTop";
             this.alwaysTop.Size = new System.Drawing.Size(162, 23);
             this.alwaysTop.TabIndex = 63;
             this.alwaysTop.Text = "Use Smart Always on Top";
             this.alwaysTop.CheckedChanged += new System.EventHandler(this.alwaysTop_CheckedChanged);
-            // 
+            //
             // opacityLabel
-            // 
+            //
             this.opacityLabel.Location = new System.Drawing.Point(11, 152);
             this.opacityLabel.Name = "opacityLabel";
             this.opacityLabel.Size = new System.Drawing.Size(58, 19);
             this.opacityLabel.TabIndex = 65;
             this.opacityLabel.Text = "Opacity: 100%";
-            // 
+            //
             // label9
-            // 
+            //
             this.label9.Location = new System.Drawing.Point(241, 121);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(129, 18);
             this.label9.TabIndex = 72;
             this.label9.Text = "Default Client Priority:";
-            // 
+            //
             // groupBox4
-            // 
+            //
             this.groupBox4.Controls.Add(this.saveProfile);
             this.groupBox4.Controls.Add(this.cloneProfile);
             this.groupBox4.Controls.Add(this.delProfile);
@@ -1064,45 +1061,45 @@ namespace Assistant
             this.groupBox4.TabIndex = 5;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Profiles";
-            // 
+            //
             // saveProfile
-            // 
+            //
             this.saveProfile.Location = new System.Drawing.Point(320, 56);
             this.saveProfile.Name = "saveProfile";
             this.saveProfile.Size = new System.Drawing.Size(50, 30);
             this.saveProfile.TabIndex = 4;
             this.saveProfile.Text = "Save";
             this.saveProfile.Click += new System.EventHandler(this.saveProfile_Click);
-            // 
+            //
             // cloneProfile
-            // 
+            //
             this.cloneProfile.Location = new System.Drawing.Point(376, 56);
             this.cloneProfile.Name = "cloneProfile";
             this.cloneProfile.Size = new System.Drawing.Size(50, 30);
             this.cloneProfile.TabIndex = 3;
             this.cloneProfile.Text = "Clone";
             this.cloneProfile.Click += new System.EventHandler(this.cloneProfile_Click);
-            // 
+            //
             // delProfile
-            // 
+            //
             this.delProfile.Location = new System.Drawing.Point(432, 56);
             this.delProfile.Name = "delProfile";
             this.delProfile.Size = new System.Drawing.Size(50, 30);
             this.delProfile.TabIndex = 2;
             this.delProfile.Text = "Delete";
             this.delProfile.Click += new System.EventHandler(this.delProfile_Click);
-            // 
+            //
             // newProfile
-            // 
+            //
             this.newProfile.Location = new System.Drawing.Point(264, 56);
             this.newProfile.Name = "newProfile";
             this.newProfile.Size = new System.Drawing.Size(50, 30);
             this.newProfile.TabIndex = 1;
             this.newProfile.Text = "New";
             this.newProfile.Click += new System.EventHandler(this.newProfile_Click);
-            // 
+            //
             // profiles
-            // 
+            //
             this.profiles.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.profiles.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.profiles.ItemHeight = 20;
@@ -1112,18 +1109,18 @@ namespace Assistant
             this.profiles.Size = new System.Drawing.Size(476, 28);
             this.profiles.TabIndex = 0;
             this.profiles.SelectedIndexChanged += new System.EventHandler(this.profiles_SelectedIndexChanged);
-            // 
+            //
             // moreOptTab
-            // 
+            //
             this.moreOptTab.Controls.Add(this.optionsTabCtrl);
             this.moreOptTab.Location = new System.Drawing.Point(4, 44);
             this.moreOptTab.Name = "moreOptTab";
             this.moreOptTab.Size = new System.Drawing.Size(519, 322);
             this.moreOptTab.TabIndex = 5;
             this.moreOptTab.Text = "Options";
-            // 
+            //
             // optionsTabCtrl
-            // 
+            //
             this.optionsTabCtrl.Controls.Add(this.subOptionsSpeechTab);
             this.optionsTabCtrl.Controls.Add(this.subOptionsTargetTab);
             this.optionsTabCtrl.Controls.Add(this.subOptionsMiscTab);
@@ -1132,9 +1129,9 @@ namespace Assistant
             this.optionsTabCtrl.SelectedIndex = 0;
             this.optionsTabCtrl.Size = new System.Drawing.Size(510, 314);
             this.optionsTabCtrl.TabIndex = 93;
-            // 
+            //
             // subOptionsSpeechTab
-            // 
+            //
             this.subOptionsSpeechTab.BackColor = System.Drawing.SystemColors.Control;
             this.subOptionsSpeechTab.Controls.Add(this.buffDebuffOptions);
             this.subOptionsSpeechTab.Controls.Add(this.damageTakenOverhead);
@@ -1175,9 +1172,9 @@ namespace Assistant
             this.subOptionsSpeechTab.Size = new System.Drawing.Size(502, 286);
             this.subOptionsSpeechTab.TabIndex = 0;
             this.subOptionsSpeechTab.Text = "Speech & Messages  ";
-            // 
+            //
             // buffDebuffOptions
-            // 
+            //
             this.buffDebuffOptions.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buffDebuffOptions.Location = new System.Drawing.Point(208, 236);
             this.buffDebuffOptions.Name = "buffDebuffOptions";
@@ -1186,9 +1183,9 @@ namespace Assistant
             this.buffDebuffOptions.Text = "...";
             this.buffDebuffOptions.UseVisualStyleBackColor = true;
             this.buffDebuffOptions.Click += new System.EventHandler(this.BuffDebuffOptions_Click);
-            // 
+            //
             // damageTakenOverhead
-            // 
+            //
             this.damageTakenOverhead.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.damageTakenOverhead.Location = new System.Drawing.Point(394, 185);
             this.damageTakenOverhead.Name = "damageTakenOverhead";
@@ -1197,9 +1194,9 @@ namespace Assistant
             this.damageTakenOverhead.Text = "Overhead";
             this.damageTakenOverhead.UseVisualStyleBackColor = true;
             this.damageTakenOverhead.CheckedChanged += new System.EventHandler(this.damageTakenOverhead_CheckedChanged);
-            // 
+            //
             // showDamageTaken
-            // 
+            //
             this.showDamageTaken.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.showDamageTaken.Location = new System.Drawing.Point(260, 185);
             this.showDamageTaken.Name = "showDamageTaken";
@@ -1208,9 +1205,9 @@ namespace Assistant
             this.showDamageTaken.Text = "Show damage taken";
             this.showDamageTaken.UseVisualStyleBackColor = true;
             this.showDamageTaken.CheckedChanged += new System.EventHandler(this.showDamageTaken_CheckedChanged);
-            // 
+            //
             // damageDealtOverhead
-            // 
+            //
             this.damageDealtOverhead.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.damageDealtOverhead.Location = new System.Drawing.Point(394, 160);
             this.damageDealtOverhead.Name = "damageDealtOverhead";
@@ -1219,9 +1216,9 @@ namespace Assistant
             this.damageDealtOverhead.Text = "Overhead";
             this.damageDealtOverhead.UseVisualStyleBackColor = true;
             this.damageDealtOverhead.CheckedChanged += new System.EventHandler(this.damageDealtOverhead_CheckedChanged);
-            // 
+            //
             // showDamageDealt
-            // 
+            //
             this.showDamageDealt.AutoSize = true;
             this.showDamageDealt.Location = new System.Drawing.Point(260, 160);
             this.showDamageDealt.Name = "showDamageDealt";
@@ -1230,9 +1227,9 @@ namespace Assistant
             this.showDamageDealt.Text = "Show damage dealt";
             this.showDamageDealt.UseVisualStyleBackColor = true;
             this.showDamageDealt.CheckedChanged += new System.EventHandler(this.showDamageDealt_CheckedChanged);
-            // 
+            //
             // showBuffDebuffOverhead
-            // 
+            //
             this.showBuffDebuffOverhead.AutoSize = true;
             this.showBuffDebuffOverhead.Location = new System.Drawing.Point(9, 237);
             this.showBuffDebuffOverhead.Name = "showBuffDebuffOverhead";
@@ -1241,9 +1238,9 @@ namespace Assistant
             this.showBuffDebuffOverhead.Text = "Show buff/debuff overhead";
             this.showBuffDebuffOverhead.UseVisualStyleBackColor = true;
             this.showBuffDebuffOverhead.CheckedChanged += new System.EventHandler(this.showBuffDebuffOverhead_CheckedChanged);
-            // 
+            //
             // healthFmt
-            // 
+            //
             this.healthFmt.Location = new System.Drawing.Point(377, 110);
             this.healthFmt.Name = "healthFmt";
             this.healthFmt.Size = new System.Drawing.Size(53, 23);
@@ -1251,36 +1248,36 @@ namespace Assistant
             this.healthFmt.Text = "[{0}%]";
             this.healthFmt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.healthFmt.TextChanged += new System.EventHandler(this.healthFmt_TextChanged);
-            // 
+            //
             // label10
-            // 
+            //
             this.label10.Location = new System.Drawing.Point(283, 111);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(115, 18);
             this.label10.TabIndex = 88;
             this.label10.Text = "Health Format:";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // showHealthOH
-            // 
+            //
             this.showHealthOH.Location = new System.Drawing.Point(260, 88);
             this.showHealthOH.Name = "showHealthOH";
             this.showHealthOH.Size = new System.Drawing.Size(231, 20);
             this.showHealthOH.TabIndex = 87;
             this.showHealthOH.Text = "Show health above people/creatures";
             this.showHealthOH.CheckedChanged += new System.EventHandler(this.showHealthOH_CheckedChanged);
-            // 
+            //
             // chkPartyOverhead
-            // 
+            //
             this.chkPartyOverhead.Location = new System.Drawing.Point(260, 134);
             this.chkPartyOverhead.Name = "chkPartyOverhead";
             this.chkPartyOverhead.Size = new System.Drawing.Size(238, 20);
             this.chkPartyOverhead.TabIndex = 90;
             this.chkPartyOverhead.Text = "Show mana/stam above party members";
             this.chkPartyOverhead.CheckedChanged += new System.EventHandler(this.chkPartyOverhead_CheckedChanged);
-            // 
+            //
             // containerLabels
-            // 
+            //
             this.containerLabels.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.containerLabels.Location = new System.Drawing.Point(438, 63);
             this.containerLabels.Name = "containerLabels";
@@ -1289,9 +1286,9 @@ namespace Assistant
             this.containerLabels.Text = "...";
             this.containerLabels.UseVisualStyleBackColor = true;
             this.containerLabels.Click += new System.EventHandler(this.containerLabels_Click);
-            // 
+            //
             // showContainerLabels
-            // 
+            //
             this.showContainerLabels.AutoSize = true;
             this.showContainerLabels.Location = new System.Drawing.Point(260, 63);
             this.showContainerLabels.Name = "showContainerLabels";
@@ -1300,45 +1297,45 @@ namespace Assistant
             this.showContainerLabels.Text = "Show container labels";
             this.showContainerLabels.UseVisualStyleBackColor = true;
             this.showContainerLabels.CheckedChanged += new System.EventHandler(this.showContainerLabels_CheckedChanged);
-            // 
+            //
             // incomingMob
-            // 
+            //
             this.incomingMob.Location = new System.Drawing.Point(260, 10);
             this.incomingMob.Name = "incomingMob";
             this.incomingMob.Size = new System.Drawing.Size(211, 20);
             this.incomingMob.TabIndex = 71;
             this.incomingMob.Text = "Show Names of Incoming People/Creatures";
             this.incomingMob.CheckedChanged += new System.EventHandler(this.incomingMob_CheckedChanged);
-            // 
+            //
             // incomingCorpse
-            // 
+            //
             this.incomingCorpse.Location = new System.Drawing.Point(260, 36);
             this.incomingCorpse.Name = "incomingCorpse";
             this.incomingCorpse.Size = new System.Drawing.Size(238, 20);
             this.incomingCorpse.TabIndex = 72;
             this.incomingCorpse.Text = "Show Names of New/Incoming Corpses";
             this.incomingCorpse.CheckedChanged += new System.EventHandler(this.incomingCorpse_CheckedChanged);
-            // 
+            //
             // setLTHilight
-            // 
+            //
             this.setLTHilight.Location = new System.Drawing.Point(168, 116);
             this.setLTHilight.Name = "setLTHilight";
             this.setLTHilight.Size = new System.Drawing.Size(47, 20);
             this.setLTHilight.TabIndex = 70;
             this.setLTHilight.Text = "Set";
             this.setLTHilight.Click += new System.EventHandler(this.setLTHilight_Click);
-            // 
+            //
             // lthilight
-            // 
+            //
             this.lthilight.Location = new System.Drawing.Point(9, 116);
             this.lthilight.Name = "lthilight";
             this.lthilight.Size = new System.Drawing.Size(206, 19);
             this.lthilight.TabIndex = 69;
             this.lthilight.Text = "Last Target Highlight:";
             this.lthilight.CheckedChanged += new System.EventHandler(this.lthilight_CheckedChanged);
-            // 
+            //
             // setHarmHue
-            // 
+            //
             this.setHarmHue.Enabled = false;
             this.setHarmHue.Location = new System.Drawing.Point(99, 179);
             this.setHarmHue.Name = "setHarmHue";
@@ -1346,9 +1343,9 @@ namespace Assistant
             this.setHarmHue.TabIndex = 64;
             this.setHarmHue.Text = "Set";
             this.setHarmHue.Click += new System.EventHandler(this.setHarmHue_Click);
-            // 
+            //
             // setNeuHue
-            // 
+            //
             this.setNeuHue.Enabled = false;
             this.setNeuHue.Location = new System.Drawing.Point(172, 179);
             this.setNeuHue.Name = "setNeuHue";
@@ -1356,36 +1353,36 @@ namespace Assistant
             this.setNeuHue.TabIndex = 65;
             this.setNeuHue.Text = "Set";
             this.setNeuHue.Click += new System.EventHandler(this.setNeuHue_Click);
-            // 
+            //
             // lblHarmHue
-            // 
+            //
             this.lblHarmHue.Location = new System.Drawing.Point(86, 165);
             this.lblHarmHue.Name = "lblHarmHue";
             this.lblHarmHue.Size = new System.Drawing.Size(59, 14);
             this.lblHarmHue.TabIndex = 68;
             this.lblHarmHue.Text = "Harmful";
             this.lblHarmHue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // lblNeuHue
-            // 
+            //
             this.lblNeuHue.Location = new System.Drawing.Point(163, 165);
             this.lblNeuHue.Name = "lblNeuHue";
             this.lblNeuHue.Size = new System.Drawing.Size(52, 14);
             this.lblNeuHue.TabIndex = 67;
             this.lblNeuHue.Text = "Neutral";
             this.lblNeuHue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // lblBeneHue
-            // 
+            //
             this.lblBeneHue.Location = new System.Drawing.Point(9, 165);
             this.lblBeneHue.Name = "lblBeneHue";
             this.lblBeneHue.Size = new System.Drawing.Size(66, 14);
             this.lblBeneHue.TabIndex = 66;
             this.lblBeneHue.Text = "Beneficial";
             this.lblBeneHue.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // setBeneHue
-            // 
+            //
             this.setBeneHue.Enabled = false;
             this.setBeneHue.Location = new System.Drawing.Point(27, 179);
             this.setBeneHue.Name = "setBeneHue";
@@ -1393,104 +1390,104 @@ namespace Assistant
             this.setBeneHue.TabIndex = 63;
             this.setBeneHue.Text = "Set";
             this.setBeneHue.Click += new System.EventHandler(this.setBeneHue_Click);
-            // 
+            //
             // setSpeechHue
-            // 
+            //
             this.setSpeechHue.Location = new System.Drawing.Point(168, 90);
             this.setSpeechHue.Name = "setSpeechHue";
             this.setSpeechHue.Size = new System.Drawing.Size(47, 20);
             this.setSpeechHue.TabIndex = 62;
             this.setSpeechHue.Text = "Set";
             this.setSpeechHue.Click += new System.EventHandler(this.setSpeechHue_Click);
-            // 
+            //
             // setWarnHue
-            // 
+            //
             this.setWarnHue.Location = new System.Drawing.Point(168, 64);
             this.setWarnHue.Name = "setWarnHue";
             this.setWarnHue.Size = new System.Drawing.Size(47, 20);
             this.setWarnHue.TabIndex = 61;
             this.setWarnHue.Text = "Set";
             this.setWarnHue.Click += new System.EventHandler(this.setWarnHue_Click);
-            // 
+            //
             // setMsgHue
-            // 
+            //
             this.setMsgHue.Location = new System.Drawing.Point(168, 38);
             this.setMsgHue.Name = "setMsgHue";
             this.setMsgHue.Size = new System.Drawing.Size(47, 20);
             this.setMsgHue.TabIndex = 60;
             this.setMsgHue.Text = "Set";
             this.setMsgHue.Click += new System.EventHandler(this.setMsgHue_Click);
-            // 
+            //
             // setExHue
-            // 
+            //
             this.setExHue.Location = new System.Drawing.Point(168, 12);
             this.setExHue.Name = "setExHue";
             this.setExHue.Size = new System.Drawing.Size(47, 20);
             this.setExHue.TabIndex = 59;
             this.setExHue.Text = "Set";
             this.setExHue.Click += new System.EventHandler(this.setExHue_Click);
-            // 
+            //
             // lblWarnHue
-            // 
+            //
             this.lblWarnHue.Location = new System.Drawing.Point(9, 64);
             this.lblWarnHue.Name = "lblWarnHue";
             this.lblWarnHue.Size = new System.Drawing.Size(206, 18);
             this.lblWarnHue.TabIndex = 58;
             this.lblWarnHue.Text = "Warning Message Hue:";
-            // 
+            //
             // lblMsgHue
-            // 
+            //
             this.lblMsgHue.Location = new System.Drawing.Point(9, 38);
             this.lblMsgHue.Name = "lblMsgHue";
             this.lblMsgHue.Size = new System.Drawing.Size(206, 18);
             this.lblMsgHue.TabIndex = 57;
             this.lblMsgHue.Text = "Razor Message Hue:";
-            // 
+            //
             // lblExHue
-            // 
+            //
             this.lblExHue.Location = new System.Drawing.Point(9, 12);
             this.lblExHue.Name = "lblExHue";
             this.lblExHue.Size = new System.Drawing.Size(206, 18);
             this.lblExHue.TabIndex = 56;
             this.lblExHue.Text = "Search Exemption Hue:";
-            // 
+            //
             // txtSpellFormat
-            // 
+            //
             this.txtSpellFormat.Location = new System.Drawing.Point(89, 208);
             this.txtSpellFormat.Name = "txtSpellFormat";
             this.txtSpellFormat.Size = new System.Drawing.Size(152, 23);
             this.txtSpellFormat.TabIndex = 55;
             this.txtSpellFormat.TextChanged += new System.EventHandler(this.txtSpellFormat_TextChanged);
-            // 
+            //
             // chkForceSpellHue
-            // 
+            //
             this.chkForceSpellHue.Location = new System.Drawing.Point(9, 142);
             this.chkForceSpellHue.Name = "chkForceSpellHue";
             this.chkForceSpellHue.Size = new System.Drawing.Size(152, 20);
             this.chkForceSpellHue.TabIndex = 53;
             this.chkForceSpellHue.Text = "Override Spell Hues:";
             this.chkForceSpellHue.CheckedChanged += new System.EventHandler(this.chkForceSpellHue_CheckedChanged);
-            // 
+            //
             // chkForceSpeechHue
-            // 
+            //
             this.chkForceSpeechHue.Location = new System.Drawing.Point(9, 90);
             this.chkForceSpeechHue.Name = "chkForceSpeechHue";
             this.chkForceSpeechHue.Size = new System.Drawing.Size(206, 19);
             this.chkForceSpeechHue.TabIndex = 52;
             this.chkForceSpeechHue.Text = "Override Speech Hue:";
             this.chkForceSpeechHue.CheckedChanged += new System.EventHandler(this.chkForceSpeechHue_CheckedChanged);
-            // 
+            //
             // label3
-            // 
+            //
             this.label3.Location = new System.Drawing.Point(9, 208);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(102, 20);
             this.label3.TabIndex = 54;
             this.label3.Text = "Spell Format:";
             this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // subOptionsTargetTab
-            // 
+            //
             this.subOptionsTargetTab.BackColor = System.Drawing.SystemColors.Control;
             this.subOptionsTargetTab.Controls.Add(this.groupSmartTarget);
             this.subOptionsTargetTab.Controls.Add(this.setTargetIndicatorHue);
@@ -1516,9 +1513,9 @@ namespace Assistant
             this.subOptionsTargetTab.Size = new System.Drawing.Size(502, 288);
             this.subOptionsTargetTab.TabIndex = 1;
             this.subOptionsTargetTab.Text = "Targeting & Queues  ";
-            // 
+            //
             // groupSmartTarget
-            // 
+            //
             this.groupSmartTarget.Controls.Add(this.nonFriendlyHarmfulOnly);
             this.groupSmartTarget.Controls.Add(this.friendBeneficialOnly);
             this.groupSmartTarget.Controls.Add(this.onlyNextPrevBeneficial);
@@ -1529,9 +1526,9 @@ namespace Assistant
             this.groupSmartTarget.TabIndex = 138;
             this.groupSmartTarget.TabStop = false;
             this.groupSmartTarget.Text = "Smart Targeting:";
-            // 
+            //
             // nonFriendlyHarmfulOnly
-            // 
+            //
             this.nonFriendlyHarmfulOnly.Location = new System.Drawing.Point(6, 98);
             this.nonFriendlyHarmfulOnly.Name = "nonFriendlyHarmfulOnly";
             this.nonFriendlyHarmfulOnly.Size = new System.Drawing.Size(232, 19);
@@ -1539,9 +1536,9 @@ namespace Assistant
             this.nonFriendlyHarmfulOnly.Text = "\'Next/Prev Non-Friendly\' harmful only";
             this.nonFriendlyHarmfulOnly.UseVisualStyleBackColor = true;
             this.nonFriendlyHarmfulOnly.CheckedChanged += new System.EventHandler(this.nonFriendlyHarmfulOnly_CheckedChanged);
-            // 
+            //
             // friendBeneficialOnly
-            // 
+            //
             this.friendBeneficialOnly.AutoSize = true;
             this.friendBeneficialOnly.Location = new System.Drawing.Point(6, 73);
             this.friendBeneficialOnly.Name = "friendBeneficialOnly";
@@ -1550,9 +1547,9 @@ namespace Assistant
             this.friendBeneficialOnly.Text = "\'Next/Prev Friendly\' sets beneficial only";
             this.friendBeneficialOnly.UseVisualStyleBackColor = true;
             this.friendBeneficialOnly.CheckedChanged += new System.EventHandler(this.friendBeneficialOnly_CheckedChanged);
-            // 
+            //
             // onlyNextPrevBeneficial
-            // 
+            //
             this.onlyNextPrevBeneficial.AutoSize = true;
             this.onlyNextPrevBeneficial.Location = new System.Drawing.Point(6, 48);
             this.onlyNextPrevBeneficial.Name = "onlyNextPrevBeneficial";
@@ -1561,18 +1558,18 @@ namespace Assistant
             this.onlyNextPrevBeneficial.Text = "\'Next/Prev Friend\' sets beneficial only";
             this.onlyNextPrevBeneficial.UseVisualStyleBackColor = true;
             this.onlyNextPrevBeneficial.CheckedChanged += new System.EventHandler(this.onlyNextPrevBeneficial_CheckedChanged);
-            // 
+            //
             // smartLT
-            // 
+            //
             this.smartLT.Location = new System.Drawing.Point(6, 22);
             this.smartLT.Name = "smartLT";
             this.smartLT.Size = new System.Drawing.Size(212, 20);
             this.smartLT.TabIndex = 138;
             this.smartLT.Text = "Use Smart Last Target";
             this.smartLT.CheckedChanged += new System.EventHandler(this.smartLT_CheckedChanged);
-            // 
+            //
             // setTargetIndicatorHue
-            // 
+            //
             this.setTargetIndicatorHue.Location = new System.Drawing.Point(177, 246);
             this.setTargetIndicatorHue.Name = "setTargetIndicatorHue";
             this.setTargetIndicatorHue.Size = new System.Drawing.Size(59, 23);
@@ -1580,27 +1577,27 @@ namespace Assistant
             this.setTargetIndicatorHue.Text = "Set Hue";
             this.setTargetIndicatorHue.UseVisualStyleBackColor = true;
             this.setTargetIndicatorHue.Click += new System.EventHandler(this.setTargetIndicatorHue_Click);
-            // 
+            //
             // targetIndictorFormat
-            // 
+            //
             this.targetIndictorFormat.Location = new System.Drawing.Point(64, 246);
             this.targetIndictorFormat.Name = "targetIndictorFormat";
             this.targetIndictorFormat.Size = new System.Drawing.Size(107, 23);
             this.targetIndictorFormat.TabIndex = 93;
             this.targetIndictorFormat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.targetIndictorFormat.TextChanged += new System.EventHandler(this.targetIndictorFormat_TextChanged);
-            // 
+            //
             // showtargtext
-            // 
+            //
             this.showtargtext.Location = new System.Drawing.Point(9, 170);
             this.showtargtext.Name = "showtargtext";
             this.showtargtext.Size = new System.Drawing.Size(212, 20);
             this.showtargtext.TabIndex = 91;
             this.showtargtext.Text = "Show target flag on single click";
             this.showtargtext.CheckedChanged += new System.EventHandler(this.showtargtext_CheckedChanged);
-            // 
+            //
             // showAttackTargetNewOnly
-            // 
+            //
             this.showAttackTargetNewOnly.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showAttackTargetNewOnly.Location = new System.Drawing.Point(195, 196);
             this.showAttackTargetNewOnly.Name = "showAttackTargetNewOnly";
@@ -1609,9 +1606,9 @@ namespace Assistant
             this.showAttackTargetNewOnly.Text = "New targets only";
             this.showAttackTargetNewOnly.UseVisualStyleBackColor = true;
             this.showAttackTargetNewOnly.CheckedChanged += new System.EventHandler(this.showAttackTargetNewOnly_CheckedChanged);
-            // 
+            //
             // showTextTargetIndicator
-            // 
+            //
             this.showTextTargetIndicator.Location = new System.Drawing.Point(9, 221);
             this.showTextTargetIndicator.Name = "showTextTargetIndicator";
             this.showTextTargetIndicator.Size = new System.Drawing.Size(232, 19);
@@ -1619,9 +1616,9 @@ namespace Assistant
             this.showTextTargetIndicator.Text = "Show text target indicator";
             this.showTextTargetIndicator.UseVisualStyleBackColor = true;
             this.showTextTargetIndicator.CheckedChanged += new System.EventHandler(this.showTextTargetIndicator_CheckedChanged);
-            // 
+            //
             // showAttackTarget
-            // 
+            //
             this.showAttackTarget.Location = new System.Drawing.Point(9, 196);
             this.showAttackTarget.Name = "showAttackTarget";
             this.showAttackTarget.Size = new System.Drawing.Size(232, 19);
@@ -1629,9 +1626,9 @@ namespace Assistant
             this.showAttackTarget.Text = "Attack/target name overhead";
             this.showAttackTarget.UseVisualStyleBackColor = true;
             this.showAttackTarget.CheckedChanged += new System.EventHandler(this.showAttackTarget_CheckedChanged);
-            // 
+            //
             // showTargetMessagesOverChar
-            // 
+            //
             this.showTargetMessagesOverChar.AutoSize = true;
             this.showTargetMessagesOverChar.Location = new System.Drawing.Point(9, 118);
             this.showTargetMessagesOverChar.Name = "showTargetMessagesOverChar";
@@ -1640,96 +1637,96 @@ namespace Assistant
             this.showTargetMessagesOverChar.Text = "Show Target Self/Last/Clear Overhead";
             this.showTargetMessagesOverChar.UseVisualStyleBackColor = true;
             this.showTargetMessagesOverChar.CheckedChanged += new System.EventHandler(this.showTargetMessagesOverChar_CheckedChanged);
-            // 
+            //
             // txtObjDelay
-            // 
+            //
             this.txtObjDelay.Location = new System.Drawing.Point(109, 89);
             this.txtObjDelay.Name = "txtObjDelay";
             this.txtObjDelay.Size = new System.Drawing.Size(32, 23);
             this.txtObjDelay.TabIndex = 56;
             this.txtObjDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtObjDelay.TextChanged += new System.EventHandler(this.txtObjDelay_TextChanged);
-            // 
+            //
             // objectDelay
-            // 
+            //
             this.objectDelay.Location = new System.Drawing.Point(9, 88);
             this.objectDelay.Name = "objectDelay";
             this.objectDelay.Size = new System.Drawing.Size(104, 24);
             this.objectDelay.TabIndex = 53;
             this.objectDelay.Text = "Object Delay:";
             this.objectDelay.CheckedChanged += new System.EventHandler(this.objectDelay_CheckedChanged);
-            // 
+            //
             // ltRange
-            // 
+            //
             this.ltRange.Location = new System.Drawing.Point(165, 141);
             this.ltRange.Name = "ltRange";
             this.ltRange.Size = new System.Drawing.Size(30, 23);
             this.ltRange.TabIndex = 59;
             this.ltRange.TextChanged += new System.EventHandler(this.ltRange_TextChanged);
-            // 
+            //
             // QueueActions
-            // 
+            //
             this.QueueActions.Location = new System.Drawing.Point(9, 64);
             this.QueueActions.Name = "QueueActions";
             this.QueueActions.Size = new System.Drawing.Size(202, 20);
             this.QueueActions.TabIndex = 54;
             this.QueueActions.Text = "Auto-Queue Object Delay actions ";
             this.QueueActions.CheckedChanged += new System.EventHandler(this.QueueActions_CheckedChanged);
-            // 
+            //
             // rangeCheckLT
-            // 
+            //
             this.rangeCheckLT.Location = new System.Drawing.Point(9, 142);
             this.rangeCheckLT.Name = "rangeCheckLT";
             this.rangeCheckLT.Size = new System.Drawing.Size(162, 20);
             this.rangeCheckLT.TabIndex = 58;
             this.rangeCheckLT.Text = "Range check Last Target:";
             this.rangeCheckLT.CheckedChanged += new System.EventHandler(this.rangeCheckLT_CheckedChanged);
-            // 
+            //
             // actionStatusMsg
-            // 
+            //
             this.actionStatusMsg.Location = new System.Drawing.Point(9, 38);
             this.actionStatusMsg.Name = "actionStatusMsg";
             this.actionStatusMsg.Size = new System.Drawing.Size(212, 20);
             this.actionStatusMsg.TabIndex = 57;
             this.actionStatusMsg.Text = "Show Action-Queue status messages";
             this.actionStatusMsg.CheckedChanged += new System.EventHandler(this.actionStatusMsg_CheckedChanged);
-            // 
+            //
             // label8
-            // 
+            //
             this.label8.Location = new System.Drawing.Point(201, 144);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(30, 18);
             this.label8.TabIndex = 60;
             this.label8.Text = "tiles";
-            // 
+            //
             // label6
-            // 
+            //
             this.label6.Location = new System.Drawing.Point(147, 93);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(32, 18);
             this.label6.TabIndex = 55;
             this.label6.Text = "ms";
-            // 
+            //
             // queueTargets
-            // 
+            //
             this.queueTargets.Location = new System.Drawing.Point(9, 12);
             this.queueTargets.Name = "queueTargets";
             this.queueTargets.Size = new System.Drawing.Size(228, 20);
             this.queueTargets.TabIndex = 35;
             this.queueTargets.Text = "Queue LastTarget and TargetSelf";
             this.queueTargets.CheckedChanged += new System.EventHandler(this.queueTargets_CheckedChanged);
-            // 
+            //
             // lblTargetFormat
-            // 
+            //
             this.lblTargetFormat.Location = new System.Drawing.Point(10, 246);
             this.lblTargetFormat.Name = "lblTargetFormat";
             this.lblTargetFormat.Size = new System.Drawing.Size(140, 23);
             this.lblTargetFormat.TabIndex = 94;
             this.lblTargetFormat.Text = "Format:";
             this.lblTargetFormat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // subOptionsMiscTab
-            // 
+            //
             this.subOptionsMiscTab.BackColor = System.Drawing.SystemColors.Control;
             this.subOptionsMiscTab.Controls.Add(this.autoOpenDoorWhenHidden);
             this.subOptionsMiscTab.Controls.Add(this.lblStealthFormat);
@@ -1768,9 +1765,9 @@ namespace Assistant
             this.subOptionsMiscTab.Size = new System.Drawing.Size(502, 288);
             this.subOptionsMiscTab.TabIndex = 2;
             this.subOptionsMiscTab.Text = "Additional Options  ";
-            // 
+            //
             // autoOpenDoorWhenHidden
-            // 
+            //
             this.autoOpenDoorWhenHidden.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.autoOpenDoorWhenHidden.Location = new System.Drawing.Point(393, 88);
             this.autoOpenDoorWhenHidden.Name = "autoOpenDoorWhenHidden";
@@ -1778,36 +1775,36 @@ namespace Assistant
             this.autoOpenDoorWhenHidden.TabIndex = 124;
             this.autoOpenDoorWhenHidden.Text = "When hidden";
             this.autoOpenDoorWhenHidden.CheckedChanged += new System.EventHandler(this.autoDoorWhenHidden_CheckedChanged);
-            // 
+            //
             // lblStealthFormat
-            // 
+            //
             this.lblStealthFormat.AutoSize = true;
             this.lblStealthFormat.Location = new System.Drawing.Point(280, 62);
             this.lblStealthFormat.Name = "lblStealthFormat";
             this.lblStealthFormat.Size = new System.Drawing.Size(48, 15);
             this.lblStealthFormat.TabIndex = 123;
             this.lblStealthFormat.Text = "Format:";
-            // 
+            //
             // stealthStepsFormat
-            // 
+            //
             this.stealthStepsFormat.Location = new System.Drawing.Point(334, 59);
             this.stealthStepsFormat.Name = "stealthStepsFormat";
             this.stealthStepsFormat.Size = new System.Drawing.Size(114, 23);
             this.stealthStepsFormat.TabIndex = 122;
             this.stealthStepsFormat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.stealthStepsFormat.TextChanged += new System.EventHandler(this.stealthStepsFormat_TextChanged);
-            // 
+            //
             // rememberPwds
-            // 
+            //
             this.rememberPwds.Location = new System.Drawing.Point(260, 12);
             this.rememberPwds.Name = "rememberPwds";
             this.rememberPwds.Size = new System.Drawing.Size(148, 20);
             this.rememberPwds.TabIndex = 121;
             this.rememberPwds.Text = "Remember passwords ";
             this.rememberPwds.CheckedChanged += new System.EventHandler(this.rememberPwds_CheckedChanged);
-            // 
+            //
             // showStaticWalls
-            // 
+            //
             this.showStaticWalls.AutoSize = true;
             this.showStaticWalls.Location = new System.Drawing.Point(260, 219);
             this.showStaticWalls.Name = "showStaticWalls";
@@ -1816,9 +1813,9 @@ namespace Assistant
             this.showStaticWalls.Text = "Static magic fields/walls";
             this.showStaticWalls.UseVisualStyleBackColor = true;
             this.showStaticWalls.CheckedChanged += new System.EventHandler(this.showStaticWalls_CheckedChanged);
-            // 
+            //
             // showStaticWallLabels
-            // 
+            //
             this.showStaticWallLabels.AutoSize = true;
             this.showStaticWallLabels.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.showStaticWallLabels.Location = new System.Drawing.Point(421, 220);
@@ -1828,9 +1825,9 @@ namespace Assistant
             this.showStaticWallLabels.Text = "Labels";
             this.showStaticWallLabels.UseVisualStyleBackColor = true;
             this.showStaticWallLabels.CheckedChanged += new System.EventHandler(this.showStaticWallLabels_CheckedChanged);
-            // 
+            //
             // stealthOverhead
-            // 
+            //
             this.stealthOverhead.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.stealthOverhead.Location = new System.Drawing.Point(393, 37);
             this.stealthOverhead.Name = "stealthOverhead";
@@ -1839,70 +1836,70 @@ namespace Assistant
             this.stealthOverhead.Text = "Overhead";
             this.stealthOverhead.UseVisualStyleBackColor = true;
             this.stealthOverhead.CheckedChanged += new System.EventHandler(this.stealthOverhead_CheckedChanged);
-            // 
+            //
             // forceSizeX
-            // 
+            //
             this.forceSizeX.Location = new System.Drawing.Point(387, 190);
             this.forceSizeX.Name = "forceSizeX";
             this.forceSizeX.Size = new System.Drawing.Size(34, 23);
             this.forceSizeX.TabIndex = 111;
             this.forceSizeX.TextChanged += new System.EventHandler(this.forceSizeX_TextChanged);
-            // 
+            //
             // forceSizeY
-            // 
+            //
             this.forceSizeY.Location = new System.Drawing.Point(443, 191);
             this.forceSizeY.Name = "forceSizeY";
             this.forceSizeY.Size = new System.Drawing.Size(33, 23);
             this.forceSizeY.TabIndex = 112;
             this.forceSizeY.TextChanged += new System.EventHandler(this.forceSizeY_TextChanged);
-            // 
+            //
             // blockHealPoison
-            // 
+            //
             this.blockHealPoison.Location = new System.Drawing.Point(260, 166);
             this.blockHealPoison.Name = "blockHealPoison";
             this.blockHealPoison.Size = new System.Drawing.Size(201, 20);
             this.blockHealPoison.TabIndex = 116;
             this.blockHealPoison.Text = "Block heal if target is poisoned";
             this.blockHealPoison.CheckedChanged += new System.EventHandler(this.blockHealPoison_CheckedChanged);
-            // 
+            //
             // potionEquip
-            // 
+            //
             this.potionEquip.Location = new System.Drawing.Point(260, 140);
             this.potionEquip.Name = "potionEquip";
             this.potionEquip.Size = new System.Drawing.Size(232, 20);
             this.potionEquip.TabIndex = 115;
             this.potionEquip.Text = "Auto Un/Re-equip hands for potions";
             this.potionEquip.CheckedChanged += new System.EventHandler(this.potionEquip_CheckedChanged);
-            // 
+            //
             // spellUnequip
-            // 
+            //
             this.spellUnequip.Location = new System.Drawing.Point(260, 114);
             this.spellUnequip.Name = "spellUnequip";
             this.spellUnequip.Size = new System.Drawing.Size(213, 20);
             this.spellUnequip.TabIndex = 108;
             this.spellUnequip.Text = "Auto Unequip hands before casting";
             this.spellUnequip.CheckedChanged += new System.EventHandler(this.spellUnequip_CheckedChanged);
-            // 
+            //
             // autoOpenDoors
-            // 
+            //
             this.autoOpenDoors.Location = new System.Drawing.Point(260, 88);
             this.autoOpenDoors.Name = "autoOpenDoors";
             this.autoOpenDoors.Size = new System.Drawing.Size(118, 20);
             this.autoOpenDoors.TabIndex = 110;
             this.autoOpenDoors.Text = "Auto-open doors";
             this.autoOpenDoors.CheckedChanged += new System.EventHandler(this.autoOpenDoors_CheckedChanged);
-            // 
+            //
             // chkStealth
-            // 
+            //
             this.chkStealth.Location = new System.Drawing.Point(260, 37);
             this.chkStealth.Name = "chkStealth";
             this.chkStealth.Size = new System.Drawing.Size(190, 20);
             this.chkStealth.TabIndex = 107;
             this.chkStealth.Text = "Count stealth steps";
             this.chkStealth.CheckedChanged += new System.EventHandler(this.chkStealth_CheckedChanged);
-            // 
+            //
             // label18
-            // 
+            //
             this.label18.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label18.Location = new System.Drawing.Point(427, 193);
             this.label18.Name = "label18";
@@ -1910,36 +1907,36 @@ namespace Assistant
             this.label18.TabIndex = 114;
             this.label18.Text = "x";
             this.label18.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // gameSize
-            // 
+            //
             this.gameSize.Location = new System.Drawing.Point(260, 192);
             this.gameSize.Name = "gameSize";
             this.gameSize.Size = new System.Drawing.Size(118, 18);
             this.gameSize.TabIndex = 113;
             this.gameSize.Text = "Force Game Size:";
             this.gameSize.CheckedChanged += new System.EventHandler(this.gameSize_CheckedChanged);
-            // 
+            //
             // setMinLightLevel
-            // 
+            //
             this.setMinLightLevel.Location = new System.Drawing.Point(117, 247);
             this.setMinLightLevel.Name = "setMinLightLevel";
             this.setMinLightLevel.Size = new System.Drawing.Size(58, 25);
             this.setMinLightLevel.TabIndex = 105;
             this.setMinLightLevel.Text = "Set Min";
             this.setMinLightLevel.Click += new System.EventHandler(this.setMinLightLevel_Click);
-            // 
+            //
             // setMaxLightLevel
-            // 
+            //
             this.setMaxLightLevel.Location = new System.Drawing.Point(181, 247);
             this.setMaxLightLevel.Name = "setMaxLightLevel";
             this.setMaxLightLevel.Size = new System.Drawing.Size(58, 25);
             this.setMaxLightLevel.TabIndex = 104;
             this.setMaxLightLevel.Text = "Set Max";
             this.setMaxLightLevel.Click += new System.EventHandler(this.setMaxLightLevel_Click);
-            // 
+            //
             // seasonList
-            // 
+            //
             this.seasonList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.seasonList.FormattingEnabled = true;
             this.seasonList.Items.AddRange(new object[] {
@@ -1954,27 +1951,27 @@ namespace Assistant
             this.seasonList.Size = new System.Drawing.Size(111, 23);
             this.seasonList.TabIndex = 102;
             this.seasonList.SelectedIndexChanged += new System.EventHandler(this.seasonList_SelectedIndexChanged);
-            // 
+            //
             // lblSeason
-            // 
+            //
             this.lblSeason.AutoSize = true;
             this.lblSeason.Location = new System.Drawing.Point(6, 198);
             this.lblSeason.Name = "lblSeason";
             this.lblSeason.Size = new System.Drawing.Size(47, 15);
             this.lblSeason.TabIndex = 101;
             this.lblSeason.Text = "Season:";
-            // 
+            //
             // lightLevel
-            // 
+            //
             this.lightLevel.AutoSize = true;
             this.lightLevel.Location = new System.Drawing.Point(6, 223);
             this.lightLevel.Name = "lightLevel";
             this.lightLevel.Size = new System.Drawing.Size(67, 15);
             this.lightLevel.TabIndex = 100;
             this.lightLevel.Text = "Light Level:";
-            // 
+            //
             // lightLevelBar
-            // 
+            //
             this.lightLevelBar.AutoSize = false;
             this.lightLevelBar.Location = new System.Drawing.Point(79, 223);
             this.lightLevelBar.Maximum = 31;
@@ -1984,36 +1981,36 @@ namespace Assistant
             this.lightLevelBar.TickStyle = System.Windows.Forms.TickStyle.None;
             this.lightLevelBar.Value = 15;
             this.lightLevelBar.Scroll += new System.EventHandler(this.lightLevelBar_Scroll);
-            // 
+            //
             // minMaxLightLevel
-            // 
+            //
             this.minMaxLightLevel.Location = new System.Drawing.Point(9, 250);
             this.minMaxLightLevel.Name = "minMaxLightLevel";
             this.minMaxLightLevel.Size = new System.Drawing.Size(114, 20);
             this.minMaxLightLevel.TabIndex = 106;
             this.minMaxLightLevel.Text = "Enable Min/Max";
             this.minMaxLightLevel.CheckedChanged += new System.EventHandler(this.minMaxLightLevel_CheckedChanged);
-            // 
+            //
             // blockPartyInvites
-            // 
+            //
             this.blockPartyInvites.Location = new System.Drawing.Point(9, 169);
             this.blockPartyInvites.Name = "blockPartyInvites";
             this.blockPartyInvites.Size = new System.Drawing.Size(184, 20);
             this.blockPartyInvites.TabIndex = 98;
             this.blockPartyInvites.Text = "Block party invites";
             this.blockPartyInvites.CheckedChanged += new System.EventHandler(this.blockPartyInvites_CheckedChanged);
-            // 
+            //
             // blockTradeRequests
-            // 
+            //
             this.blockTradeRequests.Location = new System.Drawing.Point(9, 143);
             this.blockTradeRequests.Name = "blockTradeRequests";
             this.blockTradeRequests.Size = new System.Drawing.Size(184, 20);
             this.blockTradeRequests.TabIndex = 97;
             this.blockTradeRequests.Text = "Block trade requests";
             this.blockTradeRequests.CheckedChanged += new System.EventHandler(this.blockTradeRequests_CheckedChanged);
-            // 
+            //
             // blockOpenCorpsesTwice
-            // 
+            //
             this.blockOpenCorpsesTwice.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.blockOpenCorpsesTwice.Location = new System.Drawing.Point(9, 91);
             this.blockOpenCorpsesTwice.Name = "blockOpenCorpsesTwice";
@@ -2021,71 +2018,71 @@ namespace Assistant
             this.blockOpenCorpsesTwice.TabIndex = 96;
             this.blockOpenCorpsesTwice.Text = "Block opening corpses twice";
             this.blockOpenCorpsesTwice.CheckedChanged += new System.EventHandler(this.blockOpenCorpsesTwice_CheckedChanged);
-            // 
+            //
             // preAOSstatbar
-            // 
+            //
             this.preAOSstatbar.Location = new System.Drawing.Point(9, 12);
             this.preAOSstatbar.Name = "preAOSstatbar";
             this.preAOSstatbar.Size = new System.Drawing.Size(190, 20);
             this.preAOSstatbar.TabIndex = 95;
             this.preAOSstatbar.Text = "Use Pre-AOS status window";
             this.preAOSstatbar.CheckedChanged += new System.EventHandler(this.preAOSstatbar_CheckedChanged);
-            // 
+            //
             // corpseRange
-            // 
+            //
             this.corpseRange.Location = new System.Drawing.Point(169, 63);
             this.corpseRange.Name = "corpseRange";
             this.corpseRange.Size = new System.Drawing.Size(24, 23);
             this.corpseRange.TabIndex = 91;
             this.corpseRange.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.corpseRange.TextChanged += new System.EventHandler(this.corpseRange_TextChanged);
-            // 
+            //
             // autoStackRes
-            // 
+            //
             this.autoStackRes.Location = new System.Drawing.Point(9, 37);
             this.autoStackRes.Name = "autoStackRes";
             this.autoStackRes.Size = new System.Drawing.Size(228, 20);
             this.autoStackRes.TabIndex = 93;
             this.autoStackRes.Text = "Auto-Stack Ore/Fish/Logs at Feet";
             this.autoStackRes.CheckedChanged += new System.EventHandler(this.autoStackRes_CheckedChanged);
-            // 
+            //
             // label4
-            // 
+            //
             this.label4.Location = new System.Drawing.Point(201, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 16);
             this.label4.TabIndex = 92;
             this.label4.Text = "tiles";
-            // 
+            //
             // openCorpses
-            // 
+            //
             this.openCorpses.Location = new System.Drawing.Point(9, 65);
             this.openCorpses.Name = "openCorpses";
             this.openCorpses.Size = new System.Drawing.Size(165, 20);
             this.openCorpses.TabIndex = 90;
             this.openCorpses.Text = "Open new corpses within";
             this.openCorpses.CheckedChanged += new System.EventHandler(this.openCorpses_CheckedChanged);
-            // 
+            //
             // blockDis
-            // 
+            //
             this.blockDis.Location = new System.Drawing.Point(9, 117);
             this.blockDis.Name = "blockDis";
             this.blockDis.Size = new System.Drawing.Size(184, 20);
             this.blockDis.TabIndex = 94;
             this.blockDis.Text = "Block dismount in war mode";
             this.blockDis.CheckedChanged += new System.EventHandler(this.blockDis_CheckedChanged);
-            // 
+            //
             // displayTab
-            // 
+            //
             this.displayTab.Controls.Add(this.displayCountersTabCtrl);
             this.displayTab.Location = new System.Drawing.Point(4, 44);
             this.displayTab.Name = "displayTab";
             this.displayTab.Size = new System.Drawing.Size(519, 322);
             this.displayTab.TabIndex = 1;
             this.displayTab.Text = "Display/Counters";
-            // 
+            //
             // displayCountersTabCtrl
-            // 
+            //
             this.displayCountersTabCtrl.Controls.Add(this.subDisplayTab);
             this.displayCountersTabCtrl.Controls.Add(this.subCountersTab);
             this.displayCountersTabCtrl.Controls.Add(this.subBandageTimerTab);
@@ -2097,9 +2094,9 @@ namespace Assistant
             this.displayCountersTabCtrl.Size = new System.Drawing.Size(510, 314);
             this.displayCountersTabCtrl.TabIndex = 51;
             this.displayCountersTabCtrl.SelectedIndexChanged += new System.EventHandler(this.displayCountersTabCtrl_SelectedIndexChanged);
-            // 
+            //
             // subDisplayTab
-            // 
+            //
             this.subDisplayTab.BackColor = System.Drawing.SystemColors.Control;
             this.subDisplayTab.Controls.Add(this.groupBox11);
             this.subDisplayTab.Controls.Add(this.trackDps);
@@ -2113,9 +2110,9 @@ namespace Assistant
             this.subDisplayTab.Size = new System.Drawing.Size(502, 286);
             this.subDisplayTab.TabIndex = 0;
             this.subDisplayTab.Text = "Display";
-            // 
+            //
             // groupBox11
-            // 
+            //
             this.groupBox11.Controls.Add(this.razorTitleBarKey);
             this.groupBox11.Controls.Add(this.showInRazorTitleBar);
             this.groupBox11.Controls.Add(this.razorTitleBar);
@@ -2125,9 +2122,9 @@ namespace Assistant
             this.groupBox11.TabIndex = 51;
             this.groupBox11.TabStop = false;
             this.groupBox11.Text = "Razor Title Bar";
-            // 
+            //
             // razorTitleBarKey
-            // 
+            //
             this.razorTitleBarKey.Location = new System.Drawing.Point(468, 17);
             this.razorTitleBarKey.Name = "razorTitleBarKey";
             this.razorTitleBarKey.Size = new System.Drawing.Size(16, 20);
@@ -2135,9 +2132,9 @@ namespace Assistant
             this.razorTitleBarKey.Text = "?";
             this.razorTitleBarKey.UseVisualStyleBackColor = true;
             this.razorTitleBarKey.Click += new System.EventHandler(this.razorTitleBarKey_Click);
-            // 
+            //
             // showInRazorTitleBar
-            // 
+            //
             this.showInRazorTitleBar.AutoSize = true;
             this.showInRazorTitleBar.Location = new System.Drawing.Point(6, 17);
             this.showInRazorTitleBar.Name = "showInRazorTitleBar";
@@ -2146,9 +2143,9 @@ namespace Assistant
             this.showInRazorTitleBar.Text = "Show in Razor title bar:";
             this.showInRazorTitleBar.UseVisualStyleBackColor = true;
             this.showInRazorTitleBar.CheckedChanged += new System.EventHandler(this.showInRazorTitleBar_CheckedChanged);
-            // 
+            //
             // razorTitleBar
-            // 
+            //
             this.razorTitleBar.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.razorTitleBar.Location = new System.Drawing.Point(6, 42);
             this.razorTitleBar.Name = "razorTitleBar";
@@ -2156,9 +2153,9 @@ namespace Assistant
             this.razorTitleBar.TabIndex = 0;
             this.razorTitleBar.Text = "{name} ({profile} - {shard}) - Razor v{version}";
             this.razorTitleBar.TextChanged += new System.EventHandler(this.razorTitleBar_TextChanged);
-            // 
+            //
             // trackDps
-            // 
+            //
             this.trackDps.AutoSize = true;
             this.trackDps.Location = new System.Drawing.Point(273, 178);
             this.trackDps.Name = "trackDps";
@@ -2167,9 +2164,9 @@ namespace Assistant
             this.trackDps.Text = "Enable damage tracker";
             this.trackDps.UseVisualStyleBackColor = true;
             this.trackDps.CheckedChanged += new System.EventHandler(this.trackDps_CheckedChanged);
-            // 
+            //
             // trackIncomingGold
-            // 
+            //
             this.trackIncomingGold.AutoSize = true;
             this.trackIncomingGold.Location = new System.Drawing.Point(273, 152);
             this.trackIncomingGold.Name = "trackIncomingGold";
@@ -2178,27 +2175,27 @@ namespace Assistant
             this.trackIncomingGold.Text = "Enable gold per sec/min/hour tracker";
             this.trackIncomingGold.UseVisualStyleBackColor = true;
             this.trackIncomingGold.CheckedChanged += new System.EventHandler(this.trackIncomingGold_CheckedChanged);
-            // 
+            //
             // showNotoHue
-            // 
+            //
             this.showNotoHue.Location = new System.Drawing.Point(6, 177);
             this.showNotoHue.Name = "showNotoHue";
             this.showNotoHue.Size = new System.Drawing.Size(221, 20);
             this.showNotoHue.TabIndex = 51;
             this.showNotoHue.Text = "Show noto hue on {char} in TitleBar";
             this.showNotoHue.CheckedChanged += new System.EventHandler(this.showNotoHue_CheckedChanged);
-            // 
+            //
             // highlightSpellReags
-            // 
+            //
             this.highlightSpellReags.Location = new System.Drawing.Point(6, 151);
             this.highlightSpellReags.Name = "highlightSpellReags";
             this.highlightSpellReags.Size = new System.Drawing.Size(205, 20);
             this.highlightSpellReags.TabIndex = 50;
             this.highlightSpellReags.Text = "Highlight Spell Reagents on Cast";
             this.highlightSpellReags.CheckedChanged += new System.EventHandler(this.highlightSpellReags_CheckedChanged);
-            // 
+            //
             // groupBox3
-            // 
+            //
             this.groupBox3.Controls.Add(this.titleBarParams);
             this.groupBox3.Controls.Add(this.titleStr);
             this.groupBox3.Controls.Add(this.showInBar);
@@ -2208,9 +2205,9 @@ namespace Assistant
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Title Bar Display";
-            // 
+            //
             // titleBarParams
-            // 
+            //
             this.titleBarParams.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.titleBarParams.FormattingEnabled = true;
             this.titleBarParams.Items.AddRange(new object[] {
@@ -2270,9 +2267,9 @@ namespace Assistant
             this.titleBarParams.Size = new System.Drawing.Size(104, 23);
             this.titleBarParams.TabIndex = 5;
             this.titleBarParams.SelectedIndexChanged += new System.EventHandler(this.titleBarParams_SelectedIndexChanged);
-            // 
+            //
             // titleStr
-            // 
+            //
             this.titleStr.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.titleStr.Location = new System.Drawing.Point(6, 48);
             this.titleStr.Multiline = true;
@@ -2281,18 +2278,18 @@ namespace Assistant
             this.titleStr.Size = new System.Drawing.Size(478, 85);
             this.titleStr.TabIndex = 4;
             this.titleStr.TextChanged += new System.EventHandler(this.titleStr_TextChanged);
-            // 
+            //
             // showInBar
-            // 
+            //
             this.showInBar.Location = new System.Drawing.Point(11, 22);
             this.showInBar.Name = "showInBar";
             this.showInBar.Size = new System.Drawing.Size(141, 20);
             this.showInBar.TabIndex = 3;
             this.showInBar.Text = "Show in UO title bar:";
             this.showInBar.CheckedChanged += new System.EventHandler(this.showInBar_CheckedChanged);
-            // 
+            //
             // subCountersTab
-            // 
+            //
             this.subCountersTab.BackColor = System.Drawing.SystemColors.Control;
             this.subCountersTab.Controls.Add(this.warnNum);
             this.subCountersTab.Controls.Add(this.warnCount);
@@ -2306,9 +2303,9 @@ namespace Assistant
             this.subCountersTab.Size = new System.Drawing.Size(502, 288);
             this.subCountersTab.TabIndex = 1;
             this.subCountersTab.Text = "Counters";
-            // 
+            //
             // warnNum
-            // 
+            //
             this.warnNum.Location = new System.Drawing.Point(430, 99);
             this.warnNum.Name = "warnNum";
             this.warnNum.Size = new System.Drawing.Size(30, 23);
@@ -2316,45 +2313,45 @@ namespace Assistant
             this.warnNum.Text = "3";
             this.warnNum.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.warnNum.TextChanged += new System.EventHandler(this.warnNum_TextChanged);
-            // 
+            //
             // warnCount
-            // 
+            //
             this.warnCount.Location = new System.Drawing.Point(299, 101);
             this.warnCount.Name = "warnCount";
             this.warnCount.Size = new System.Drawing.Size(192, 19);
             this.warnCount.TabIndex = 50;
             this.warnCount.Text = "Warn when below:";
             this.warnCount.CheckedChanged += new System.EventHandler(this.warnCount_CheckedChanged);
-            // 
+            //
             // excludePouches
-            // 
+            //
             this.excludePouches.Location = new System.Drawing.Point(299, 48);
             this.excludePouches.Name = "excludePouches";
             this.excludePouches.Size = new System.Drawing.Size(192, 21);
             this.excludePouches.TabIndex = 49;
             this.excludePouches.Text = "Never auto-search pouches";
             this.excludePouches.CheckedChanged += new System.EventHandler(this.excludePouches_CheckedChanged);
-            // 
+            //
             // titlebarImages
-            // 
+            //
             this.titlebarImages.Location = new System.Drawing.Point(299, 75);
             this.titlebarImages.Name = "titlebarImages";
             this.titlebarImages.Size = new System.Drawing.Size(180, 20);
             this.titlebarImages.TabIndex = 48;
             this.titlebarImages.Text = "Show Images with Counters";
             this.titlebarImages.CheckedChanged += new System.EventHandler(this.titlebarImages_CheckedChanged);
-            // 
+            //
             // checkNewConts
-            // 
+            //
             this.checkNewConts.Location = new System.Drawing.Point(299, 24);
             this.checkNewConts.Name = "checkNewConts";
             this.checkNewConts.Size = new System.Drawing.Size(200, 20);
             this.checkNewConts.TabIndex = 47;
             this.checkNewConts.Text = "Auto search new containers";
             this.checkNewConts.CheckedChanged += new System.EventHandler(this.checkNewConts_CheckedChanged);
-            // 
+            //
             // groupBox2
-            // 
+            //
             this.groupBox2.Controls.Add(this.counters);
             this.groupBox2.Controls.Add(this.delCounter);
             this.groupBox2.Controls.Add(this.addCounter);
@@ -2365,9 +2362,9 @@ namespace Assistant
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Counters";
-            // 
+            //
             // counters
-            // 
+            //
             this.counters.CheckBoxes = true;
             this.counters.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cntName,
@@ -2384,46 +2381,46 @@ namespace Assistant
             this.counters.UseCompatibleStateImageBehavior = false;
             this.counters.View = System.Windows.Forms.View.Details;
             this.counters.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.counters_ItemCheck);
-            // 
+            //
             // cntName
-            // 
+            //
             this.cntName.Text = "Name (Format)";
             this.cntName.Width = 216;
-            // 
+            //
             // cntCount
-            // 
+            //
             this.cntCount.Text = "Count";
             this.cntCount.Width = 51;
-            // 
+            //
             // delCounter
-            // 
+            //
             this.delCounter.Location = new System.Drawing.Point(108, 229);
             this.delCounter.Name = "delCounter";
             this.delCounter.Size = new System.Drawing.Size(71, 37);
             this.delCounter.TabIndex = 4;
             this.delCounter.Text = "Del/Edit";
             this.delCounter.Click += new System.EventHandler(this.delCounter_Click);
-            // 
+            //
             // addCounter
-            // 
+            //
             this.addCounter.Location = new System.Drawing.Point(6, 229);
             this.addCounter.Name = "addCounter";
             this.addCounter.Size = new System.Drawing.Size(70, 37);
             this.addCounter.TabIndex = 3;
             this.addCounter.Text = "Add...";
             this.addCounter.Click += new System.EventHandler(this.addCounter_Click);
-            // 
+            //
             // recount
-            // 
+            //
             this.recount.Location = new System.Drawing.Point(208, 229);
             this.recount.Name = "recount";
             this.recount.Size = new System.Drawing.Size(70, 37);
             this.recount.TabIndex = 2;
             this.recount.Text = "Recount";
             this.recount.Click += new System.EventHandler(this.recount_Click);
-            // 
+            //
             // subBandageTimerTab
-            // 
+            //
             this.subBandageTimerTab.BackColor = System.Drawing.SystemColors.Control;
             this.subBandageTimerTab.Controls.Add(this.bandageEndMessage);
             this.subBandageTimerTab.Controls.Add(this.bandageStartMessage);
@@ -2441,9 +2438,9 @@ namespace Assistant
             this.subBandageTimerTab.Size = new System.Drawing.Size(502, 288);
             this.subBandageTimerTab.TabIndex = 2;
             this.subBandageTimerTab.Text = "Bandage Timer";
-            // 
+            //
             // bandageEndMessage
-            // 
+            //
             this.bandageEndMessage.Location = new System.Drawing.Point(205, 123);
             this.bandageEndMessage.Name = "bandageEndMessage";
             this.bandageEndMessage.Size = new System.Drawing.Size(146, 23);
@@ -2451,9 +2448,9 @@ namespace Assistant
             this.bandageEndMessage.Text = "Bandage: Ending";
             this.bandageEndMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bandageEndMessage.TextChanged += new System.EventHandler(this.BandageEndMessage_TextChanged);
-            // 
+            //
             // bandageStartMessage
-            // 
+            //
             this.bandageStartMessage.Location = new System.Drawing.Point(205, 98);
             this.bandageStartMessage.Name = "bandageStartMessage";
             this.bandageStartMessage.Size = new System.Drawing.Size(146, 23);
@@ -2461,9 +2458,9 @@ namespace Assistant
             this.bandageStartMessage.Text = "Bandage: Starting";
             this.bandageStartMessage.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bandageStartMessage.TextChanged += new System.EventHandler(this.BandageStartMessage_TextChanged);
-            // 
+            //
             // showBandageEnd
-            // 
+            //
             this.showBandageEnd.AutoSize = true;
             this.showBandageEnd.Location = new System.Drawing.Point(9, 125);
             this.showBandageEnd.Name = "showBandageEnd";
@@ -2472,9 +2469,9 @@ namespace Assistant
             this.showBandageEnd.Text = "Show bandaging end message";
             this.showBandageEnd.UseVisualStyleBackColor = true;
             this.showBandageEnd.CheckedChanged += new System.EventHandler(this.ShowBandageEnd_CheckedChanged);
-            // 
+            //
             // showBandageStart
-            // 
+            //
             this.showBandageStart.AutoSize = true;
             this.showBandageStart.Location = new System.Drawing.Point(9, 100);
             this.showBandageStart.Name = "showBandageStart";
@@ -2483,9 +2480,9 @@ namespace Assistant
             this.showBandageStart.Text = "Show bandaging start message";
             this.showBandageStart.UseVisualStyleBackColor = true;
             this.showBandageStart.CheckedChanged += new System.EventHandler(this.ShowBandageStart_CheckedChanged);
-            // 
+            //
             // setBandageHue
-            // 
+            //
             this.setBandageHue.Location = new System.Drawing.Point(269, 41);
             this.setBandageHue.Name = "setBandageHue";
             this.setBandageHue.Size = new System.Drawing.Size(67, 23);
@@ -2493,9 +2490,9 @@ namespace Assistant
             this.setBandageHue.Text = "Set Hue";
             this.setBandageHue.UseVisualStyleBackColor = true;
             this.setBandageHue.Click += new System.EventHandler(this.setBandageHue_Click);
-            // 
+            //
             // bandageTimerLocation
-            // 
+            //
             this.bandageTimerLocation.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.bandageTimerLocation.FormattingEnabled = true;
             this.bandageTimerLocation.Items.AddRange(new object[] {
@@ -2506,27 +2503,27 @@ namespace Assistant
             this.bandageTimerLocation.Size = new System.Drawing.Size(118, 23);
             this.bandageTimerLocation.TabIndex = 56;
             this.bandageTimerLocation.SelectedIndexChanged += new System.EventHandler(this.bandageTimerLocation_SelectedIndexChanged);
-            // 
+            //
             // bandageTimerSeconds
-            // 
+            //
             this.bandageTimerSeconds.Location = new System.Drawing.Point(180, 71);
             this.bandageTimerSeconds.Name = "bandageTimerSeconds";
             this.bandageTimerSeconds.Size = new System.Drawing.Size(48, 23);
             this.bandageTimerSeconds.TabIndex = 55;
             this.bandageTimerSeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bandageTimerSeconds.TextChanged += new System.EventHandler(this.bandageTimerSeconds_TextChanged);
-            // 
+            //
             // onlyShowBandageTimerSeconds
-            // 
+            //
             this.onlyShowBandageTimerSeconds.Location = new System.Drawing.Point(9, 72);
             this.onlyShowBandageTimerSeconds.Name = "onlyShowBandageTimerSeconds";
             this.onlyShowBandageTimerSeconds.Size = new System.Drawing.Size(205, 20);
             this.onlyShowBandageTimerSeconds.TabIndex = 53;
             this.onlyShowBandageTimerSeconds.Text = "Only show every X seconds:";
             this.onlyShowBandageTimerSeconds.CheckedChanged += new System.EventHandler(this.onlyShowBandageTimerSeconds_CheckedChanged);
-            // 
+            //
             // bandageTimerFormat
-            // 
+            //
             this.bandageTimerFormat.Location = new System.Drawing.Point(113, 41);
             this.bandageTimerFormat.Name = "bandageTimerFormat";
             this.bandageTimerFormat.Size = new System.Drawing.Size(150, 23);
@@ -2534,27 +2531,27 @@ namespace Assistant
             this.bandageTimerFormat.Text = "Bandage: {count}s";
             this.bandageTimerFormat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.bandageTimerFormat.TextChanged += new System.EventHandler(this.bandageTimerFormat_TextChanged);
-            // 
+            //
             // showBandageTimer
-            // 
+            //
             this.showBandageTimer.Location = new System.Drawing.Point(9, 11);
             this.showBandageTimer.Name = "showBandageTimer";
             this.showBandageTimer.Size = new System.Drawing.Size(205, 20);
             this.showBandageTimer.TabIndex = 51;
             this.showBandageTimer.Text = "Show bandage timer";
             this.showBandageTimer.CheckedChanged += new System.EventHandler(this.showBandageTimer_CheckedChanged);
-            // 
+            //
             // lblBandageCountFormat
-            // 
+            //
             this.lblBandageCountFormat.Location = new System.Drawing.Point(21, 41);
             this.lblBandageCountFormat.Name = "lblBandageCountFormat";
             this.lblBandageCountFormat.Size = new System.Drawing.Size(159, 23);
             this.lblBandageCountFormat.TabIndex = 54;
             this.lblBandageCountFormat.Text = "Format && Hue:";
             this.lblBandageCountFormat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // subOverheadTab
-            // 
+            //
             this.subOverheadTab.BackColor = System.Drawing.SystemColors.Control;
             this.subOverheadTab.Controls.Add(this.label14);
             this.subOverheadTab.Controls.Add(this.unicodeStyle);
@@ -2576,18 +2573,18 @@ namespace Assistant
             this.subOverheadTab.Size = new System.Drawing.Size(502, 288);
             this.subOverheadTab.TabIndex = 3;
             this.subOverheadTab.Text = "Overhead Messages";
-            // 
+            //
             // label14
-            // 
+            //
             this.label14.AutoSize = true;
             this.label14.Location = new System.Drawing.Point(5, 101);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(84, 15);
             this.label14.TabIndex = 102;
             this.label14.Text = "Message Style:";
-            // 
+            //
             // unicodeStyle
-            // 
+            //
             this.unicodeStyle.AutoSize = true;
             this.unicodeStyle.Location = new System.Drawing.Point(8, 119);
             this.unicodeStyle.Name = "unicodeStyle";
@@ -2597,9 +2594,9 @@ namespace Assistant
             this.unicodeStyle.Text = "Unicode";
             this.unicodeStyle.UseVisualStyleBackColor = true;
             this.unicodeStyle.CheckedChanged += new System.EventHandler(this.unicodeStyle_CheckedChanged);
-            // 
+            //
             // asciiStyle
-            // 
+            //
             this.asciiStyle.AutoSize = true;
             this.asciiStyle.Location = new System.Drawing.Point(8, 144);
             this.asciiStyle.Name = "asciiStyle";
@@ -2609,9 +2606,9 @@ namespace Assistant
             this.asciiStyle.Text = "ASCII";
             this.asciiStyle.UseVisualStyleBackColor = true;
             this.asciiStyle.CheckedChanged += new System.EventHandler(this.asciiStyle_CheckedChanged);
-            // 
+            //
             // editOverheadMessage
-            // 
+            //
             this.editOverheadMessage.Location = new System.Drawing.Point(8, 179);
             this.editOverheadMessage.Name = "editOverheadMessage";
             this.editOverheadMessage.Size = new System.Drawing.Size(84, 28);
@@ -2619,9 +2616,9 @@ namespace Assistant
             this.editOverheadMessage.Text = "Edit";
             this.editOverheadMessage.UseVisualStyleBackColor = true;
             this.editOverheadMessage.Click += new System.EventHandler(this.editOverheadMessage_Click);
-            // 
+            //
             // setColorHue
-            // 
+            //
             this.setColorHue.Location = new System.Drawing.Point(8, 247);
             this.setColorHue.Name = "setColorHue";
             this.setColorHue.Size = new System.Drawing.Size(84, 28);
@@ -2629,9 +2626,9 @@ namespace Assistant
             this.setColorHue.Text = "Set Hue";
             this.setColorHue.UseVisualStyleBackColor = true;
             this.setColorHue.Click += new System.EventHandler(this.setColorHue_Click);
-            // 
+            //
             // removeOverheadMessage
-            // 
+            //
             this.removeOverheadMessage.Location = new System.Drawing.Point(8, 213);
             this.removeOverheadMessage.Name = "removeOverheadMessage";
             this.removeOverheadMessage.Size = new System.Drawing.Size(84, 28);
@@ -2639,18 +2636,18 @@ namespace Assistant
             this.removeOverheadMessage.Text = "Remove";
             this.removeOverheadMessage.UseVisualStyleBackColor = true;
             this.removeOverheadMessage.Click += new System.EventHandler(this.removeOverheadMessage_Click);
-            // 
+            //
             // label13
-            // 
+            //
             this.label13.AutoSize = true;
             this.label13.Location = new System.Drawing.Point(5, 39);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(48, 15);
             this.label13.TabIndex = 94;
             this.label13.Text = "Format:";
-            // 
+            //
             // overheadFormat
-            // 
+            //
             this.overheadFormat.Location = new System.Drawing.Point(8, 57);
             this.overheadFormat.Name = "overheadFormat";
             this.overheadFormat.Size = new System.Drawing.Size(84, 23);
@@ -2658,9 +2655,9 @@ namespace Assistant
             this.overheadFormat.Text = "[{msg}]";
             this.overheadFormat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.overheadFormat.TextChanged += new System.EventHandler(this.overheadFormat_TextChanged);
-            // 
+            //
             // setOverheadMessage
-            // 
+            //
             this.setOverheadMessage.Location = new System.Drawing.Point(443, 9);
             this.setOverheadMessage.Name = "setOverheadMessage";
             this.setOverheadMessage.Size = new System.Drawing.Size(56, 24);
@@ -2668,9 +2665,9 @@ namespace Assistant
             this.setOverheadMessage.Text = "Add";
             this.setOverheadMessage.UseVisualStyleBackColor = true;
             this.setOverheadMessage.Click += new System.EventHandler(this.setOverheadMessage_Click);
-            // 
+            //
             // cliLocOverheadView
-            // 
+            //
             this.cliLocOverheadView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cliLocOriginal,
             this.cliLocOverheadMessage});
@@ -2681,19 +2678,19 @@ namespace Assistant
             this.cliLocOverheadView.TabIndex = 91;
             this.cliLocOverheadView.UseCompatibleStateImageBehavior = false;
             this.cliLocOverheadView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // cliLocOriginal
-            // 
+            //
             this.cliLocOriginal.Text = "Original Text";
             this.cliLocOriginal.Width = 168;
-            // 
+            //
             // cliLocOverheadMessage
-            // 
+            //
             this.cliLocOverheadMessage.Text = "Overhead Message";
             this.cliLocOverheadMessage.Width = 229;
-            // 
+            //
             // cliLocSearch
-            // 
+            //
             this.cliLocSearch.Location = new System.Drawing.Point(377, 9);
             this.cliLocSearch.Name = "cliLocSearch";
             this.cliLocSearch.Size = new System.Drawing.Size(60, 24);
@@ -2701,25 +2698,25 @@ namespace Assistant
             this.cliLocSearch.Text = "Search";
             this.cliLocSearch.UseVisualStyleBackColor = true;
             this.cliLocSearch.Click += new System.EventHandler(this.cliLocSearch_Click);
-            // 
+            //
             // cliLocTextSearch
-            // 
+            //
             this.cliLocTextSearch.Location = new System.Drawing.Point(146, 9);
             this.cliLocTextSearch.Name = "cliLocTextSearch";
             this.cliLocTextSearch.Size = new System.Drawing.Size(225, 23);
             this.cliLocTextSearch.TabIndex = 89;
-            // 
+            //
             // lblOhSearch
-            // 
+            //
             this.lblOhSearch.AutoSize = true;
             this.lblOhSearch.Location = new System.Drawing.Point(95, 12);
             this.lblOhSearch.Name = "lblOhSearch";
             this.lblOhSearch.Size = new System.Drawing.Size(45, 15);
             this.lblOhSearch.TabIndex = 88;
             this.lblOhSearch.Text = "Search:";
-            // 
+            //
             // cliLocSearchView
-            // 
+            //
             this.cliLocSearchView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.cliLocSearchNumber,
             this.cliLocSearchText});
@@ -2730,19 +2727,19 @@ namespace Assistant
             this.cliLocSearchView.TabIndex = 87;
             this.cliLocSearchView.UseCompatibleStateImageBehavior = false;
             this.cliLocSearchView.View = System.Windows.Forms.View.Details;
-            // 
+            //
             // cliLocSearchNumber
-            // 
+            //
             this.cliLocSearchNumber.Text = "Number";
             this.cliLocSearchNumber.Width = 75;
-            // 
+            //
             // cliLocSearchText
-            // 
+            //
             this.cliLocSearchText.Text = "Text";
             this.cliLocSearchText.Width = 313;
-            // 
+            //
             // showOverheadMessages
-            // 
+            //
             this.showOverheadMessages.Location = new System.Drawing.Point(8, 9);
             this.showOverheadMessages.Name = "showOverheadMessages";
             this.showOverheadMessages.Size = new System.Drawing.Size(71, 24);
@@ -2750,9 +2747,9 @@ namespace Assistant
             this.showOverheadMessages.Text = "Enabled";
             this.showOverheadMessages.UseVisualStyleBackColor = true;
             this.showOverheadMessages.CheckedChanged += new System.EventHandler(this.showOverheadMessages_CheckedChanged);
-            // 
+            //
             // subWaypoints
-            // 
+            //
             this.subWaypoints.BackColor = System.Drawing.SystemColors.Control;
             this.subWaypoints.Controls.Add(this.waypointOnDeath);
             this.subWaypoints.Controls.Add(this.lblWaypointTiles);
@@ -2778,9 +2775,9 @@ namespace Assistant
             this.subWaypoints.Size = new System.Drawing.Size(502, 286);
             this.subWaypoints.TabIndex = 4;
             this.subWaypoints.Text = "Waypoints";
-            // 
+            //
             // waypointOnDeath
-            // 
+            //
             this.waypointOnDeath.AutoSize = true;
             this.waypointOnDeath.Location = new System.Drawing.Point(184, 87);
             this.waypointOnDeath.Name = "waypointOnDeath";
@@ -2789,26 +2786,26 @@ namespace Assistant
             this.waypointOnDeath.Text = "Create waypoint on death";
             this.waypointOnDeath.UseVisualStyleBackColor = true;
             this.waypointOnDeath.CheckedChanged += new System.EventHandler(this.waypointOnDeath_CheckedChanged);
-            // 
+            //
             // lblWaypointTiles
-            // 
+            //
             this.lblWaypointTiles.Location = new System.Drawing.Point(374, 63);
             this.lblWaypointTiles.Name = "lblWaypointTiles";
             this.lblWaypointTiles.Size = new System.Drawing.Size(58, 18);
             this.lblWaypointTiles.TabIndex = 65;
             this.lblWaypointTiles.Text = "tiles";
-            // 
+            //
             // hideWaypointDist
-            // 
+            //
             this.hideWaypointDist.Location = new System.Drawing.Point(336, 60);
             this.hideWaypointDist.Name = "hideWaypointDist";
             this.hideWaypointDist.Size = new System.Drawing.Size(32, 23);
             this.hideWaypointDist.TabIndex = 64;
             this.hideWaypointDist.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.hideWaypointDist.TextChanged += new System.EventHandler(this.hideWaypointDist_TextChanged);
-            // 
+            //
             // hideWaypointWithin
-            // 
+            //
             this.hideWaypointWithin.AutoSize = true;
             this.hideWaypointWithin.Location = new System.Drawing.Point(184, 62);
             this.hideWaypointWithin.Name = "hideWaypointWithin";
@@ -2817,26 +2814,26 @@ namespace Assistant
             this.hideWaypointWithin.Text = "Hide waypoint within";
             this.hideWaypointWithin.UseVisualStyleBackColor = true;
             this.hideWaypointWithin.CheckedChanged += new System.EventHandler(this.hideWaypointWithin_CheckedChanged);
-            // 
+            //
             // txtWaypointDistanceSec
-            // 
+            //
             this.txtWaypointDistanceSec.Location = new System.Drawing.Point(336, 35);
             this.txtWaypointDistanceSec.Name = "txtWaypointDistanceSec";
             this.txtWaypointDistanceSec.Size = new System.Drawing.Size(32, 23);
             this.txtWaypointDistanceSec.TabIndex = 62;
             this.txtWaypointDistanceSec.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.txtWaypointDistanceSec.TextChanged += new System.EventHandler(this.txtWaypointDistanceSec_TextChanged);
-            // 
+            //
             // lblWaypointSeconds
-            // 
+            //
             this.lblWaypointSeconds.Location = new System.Drawing.Point(374, 37);
             this.lblWaypointSeconds.Name = "lblWaypointSeconds";
             this.lblWaypointSeconds.Size = new System.Drawing.Size(58, 18);
             this.lblWaypointSeconds.TabIndex = 61;
             this.lblWaypointSeconds.Text = "secs";
-            // 
+            //
             // showWaypointDistance
-            // 
+            //
             this.showWaypointDistance.AutoSize = true;
             this.showWaypointDistance.Location = new System.Drawing.Point(184, 37);
             this.showWaypointDistance.Name = "showWaypointDistance";
@@ -2845,9 +2842,9 @@ namespace Assistant
             this.showWaypointDistance.Text = "Show tile distance every";
             this.showWaypointDistance.UseVisualStyleBackColor = true;
             this.showWaypointDistance.CheckedChanged += new System.EventHandler(this.showWaypointDistance_CheckedChanged);
-            // 
+            //
             // showWaypointOverhead
-            // 
+            //
             this.showWaypointOverhead.AutoSize = true;
             this.showWaypointOverhead.Location = new System.Drawing.Point(184, 12);
             this.showWaypointOverhead.Name = "showWaypointOverhead";
@@ -2856,9 +2853,9 @@ namespace Assistant
             this.showWaypointOverhead.Text = "Show waypoint messages overhead";
             this.showWaypointOverhead.UseVisualStyleBackColor = true;
             this.showWaypointOverhead.CheckedChanged += new System.EventHandler(this.showWaypointOverhead_CheckedChanged);
-            // 
+            //
             // btnRemoveSelectedWaypoint
-            // 
+            //
             this.btnRemoveSelectedWaypoint.Location = new System.Drawing.Point(184, 242);
             this.btnRemoveSelectedWaypoint.Name = "btnRemoveSelectedWaypoint";
             this.btnRemoveSelectedWaypoint.Size = new System.Drawing.Size(135, 29);
@@ -2866,9 +2863,9 @@ namespace Assistant
             this.btnRemoveSelectedWaypoint.Text = "Remove Selected";
             this.btnRemoveSelectedWaypoint.UseVisualStyleBackColor = true;
             this.btnRemoveSelectedWaypoint.Click += new System.EventHandler(this.btnRemoveSelectedWaypoint_Click);
-            // 
+            //
             // btnHideWaypoint
-            // 
+            //
             this.btnHideWaypoint.Location = new System.Drawing.Point(364, 242);
             this.btnHideWaypoint.Name = "btnHideWaypoint";
             this.btnHideWaypoint.Size = new System.Drawing.Size(129, 29);
@@ -2876,9 +2873,9 @@ namespace Assistant
             this.btnHideWaypoint.Text = "Clear Waypoint";
             this.btnHideWaypoint.UseVisualStyleBackColor = true;
             this.btnHideWaypoint.Click += new System.EventHandler(this.btnHideWaypoint_Click);
-            // 
+            //
             // btnUseCurrentLoc
-            // 
+            //
             this.btnUseCurrentLoc.Location = new System.Drawing.Point(364, 151);
             this.btnUseCurrentLoc.Name = "btnUseCurrentLoc";
             this.btnUseCurrentLoc.Size = new System.Drawing.Size(129, 23);
@@ -2886,57 +2883,57 @@ namespace Assistant
             this.btnUseCurrentLoc.Text = "Use Current Position";
             this.btnUseCurrentLoc.UseVisualStyleBackColor = true;
             this.btnUseCurrentLoc.Click += new System.EventHandler(this.btnUseCurrentLoc_Click);
-            // 
+            //
             // txtWaypointName
-            // 
+            //
             this.txtWaypointName.Location = new System.Drawing.Point(229, 121);
             this.txtWaypointName.Name = "txtWaypointName";
             this.txtWaypointName.Size = new System.Drawing.Size(129, 23);
             this.txtWaypointName.TabIndex = 7;
-            // 
+            //
             // lblWaypointY
-            // 
+            //
             this.lblWaypointY.AutoSize = true;
             this.lblWaypointY.Location = new System.Drawing.Point(285, 154);
             this.lblWaypointY.Name = "lblWaypointY";
             this.lblWaypointY.Size = new System.Drawing.Size(17, 15);
             this.lblWaypointY.TabIndex = 6;
             this.lblWaypointY.Text = "Y:";
-            // 
+            //
             // lblWaypointX
-            // 
+            //
             this.lblWaypointX.AutoSize = true;
             this.lblWaypointX.Location = new System.Drawing.Point(206, 154);
             this.lblWaypointX.Name = "lblWaypointX";
             this.lblWaypointX.Size = new System.Drawing.Size(17, 15);
             this.lblWaypointX.TabIndex = 5;
             this.lblWaypointX.Text = "X:";
-            // 
+            //
             // txtWaypointX
-            // 
+            //
             this.txtWaypointX.Location = new System.Drawing.Point(229, 151);
             this.txtWaypointX.Name = "txtWaypointX";
             this.txtWaypointX.Size = new System.Drawing.Size(50, 23);
             this.txtWaypointX.TabIndex = 4;
-            // 
+            //
             // txtWaypointY
-            // 
+            //
             this.txtWaypointY.Location = new System.Drawing.Point(308, 151);
             this.txtWaypointY.Name = "txtWaypointY";
             this.txtWaypointY.Size = new System.Drawing.Size(50, 23);
             this.txtWaypointY.TabIndex = 3;
-            // 
+            //
             // lblWaypoint
-            // 
+            //
             this.lblWaypoint.AutoSize = true;
             this.lblWaypoint.Location = new System.Drawing.Point(181, 124);
             this.lblWaypoint.Name = "lblWaypoint";
             this.lblWaypoint.Size = new System.Drawing.Size(42, 15);
             this.lblWaypoint.TabIndex = 2;
             this.lblWaypoint.Text = "Name:";
-            // 
+            //
             // btnAddWaypoint
-            // 
+            //
             this.btnAddWaypoint.Location = new System.Drawing.Point(364, 121);
             this.btnAddWaypoint.Name = "btnAddWaypoint";
             this.btnAddWaypoint.Size = new System.Drawing.Size(129, 24);
@@ -2944,9 +2941,9 @@ namespace Assistant
             this.btnAddWaypoint.Text = "Add Waypoint";
             this.btnAddWaypoint.UseVisualStyleBackColor = true;
             this.btnAddWaypoint.Click += new System.EventHandler(this.btnAddWaypoint_Click);
-            // 
+            //
             // waypointList
-            // 
+            //
             this.waypointList.FormattingEnabled = true;
             this.waypointList.ItemHeight = 15;
             this.waypointList.Location = new System.Drawing.Point(11, 12);
@@ -2955,9 +2952,9 @@ namespace Assistant
             this.waypointList.TabIndex = 0;
             this.waypointList.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listWaypoints_MouseDoubleClick);
             this.waypointList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listWaypoints_MouseDown);
-            // 
+            //
             // dressTab
-            // 
+            //
             this.dressTab.Controls.Add(this.groupBox6);
             this.dressTab.Controls.Add(this.groupBox5);
             this.dressTab.Location = new System.Drawing.Point(4, 44);
@@ -2965,9 +2962,9 @@ namespace Assistant
             this.dressTab.Size = new System.Drawing.Size(519, 322);
             this.dressTab.TabIndex = 3;
             this.dressTab.Text = "Arm/Dress";
-            // 
+            //
             // groupBox6
-            // 
+            //
             this.groupBox6.Controls.Add(this.clearDress);
             this.groupBox6.Controls.Add(this.dressDelSel);
             this.groupBox6.Controls.Add(this.undressBag);
@@ -2982,27 +2979,27 @@ namespace Assistant
             this.groupBox6.TabIndex = 7;
             this.groupBox6.TabStop = false;
             this.groupBox6.Text = "Arm/Dress Items";
-            // 
+            //
             // clearDress
-            // 
+            //
             this.clearDress.Location = new System.Drawing.Point(209, 257);
             this.clearDress.Name = "clearDress";
             this.clearDress.Size = new System.Drawing.Size(96, 32);
             this.clearDress.TabIndex = 13;
             this.clearDress.Text = "Clear List";
             this.clearDress.Click += new System.EventHandler(this.clearDress_Click);
-            // 
+            //
             // dressDelSel
-            // 
+            //
             this.dressDelSel.Location = new System.Drawing.Point(209, 170);
             this.dressDelSel.Name = "dressDelSel";
             this.dressDelSel.Size = new System.Drawing.Size(96, 32);
             this.dressDelSel.TabIndex = 12;
             this.dressDelSel.Text = "Remove";
             this.dressDelSel.Click += new System.EventHandler(this.dressDelSel_Click);
-            // 
+            //
             // undressBag
-            // 
+            //
             this.undressBag.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.undressBag.Location = new System.Drawing.Point(209, 208);
             this.undressBag.Name = "undressBag";
@@ -3010,36 +3007,36 @@ namespace Assistant
             this.undressBag.TabIndex = 11;
             this.undressBag.Text = "Change Undress Bag";
             this.undressBag.Click += new System.EventHandler(this.undressBag_Click);
-            // 
+            //
             // undressList
-            // 
+            //
             this.undressList.Location = new System.Drawing.Point(209, 56);
             this.undressList.Name = "undressList";
             this.undressList.Size = new System.Drawing.Size(96, 32);
             this.undressList.TabIndex = 10;
             this.undressList.Text = "Undress";
             this.undressList.Click += new System.EventHandler(this.undressList_Click);
-            // 
+            //
             // dressUseCur
-            // 
+            //
             this.dressUseCur.Location = new System.Drawing.Point(209, 132);
             this.dressUseCur.Name = "dressUseCur";
             this.dressUseCur.Size = new System.Drawing.Size(96, 32);
             this.dressUseCur.TabIndex = 9;
             this.dressUseCur.Text = "Add Current";
             this.dressUseCur.Click += new System.EventHandler(this.dressUseCur_Click);
-            // 
+            //
             // targItem
-            // 
+            //
             this.targItem.Location = new System.Drawing.Point(209, 94);
             this.targItem.Name = "targItem";
             this.targItem.Size = new System.Drawing.Size(96, 32);
             this.targItem.TabIndex = 7;
             this.targItem.Text = "Add (Target)";
             this.targItem.Click += new System.EventHandler(this.targItem_Click);
-            // 
+            //
             // dressItems
-            // 
+            //
             this.dressItems.IntegralHeight = false;
             this.dressItems.ItemHeight = 15;
             this.dressItems.Location = new System.Drawing.Point(6, 18);
@@ -3048,18 +3045,18 @@ namespace Assistant
             this.dressItems.TabIndex = 6;
             this.dressItems.KeyDown += new System.Windows.Forms.KeyEventHandler(this.dressItems_KeyDown);
             this.dressItems.MouseDown += new System.Windows.Forms.MouseEventHandler(this.dressItems_MouseDown);
-            // 
+            //
             // dressNow
-            // 
+            //
             this.dressNow.Location = new System.Drawing.Point(209, 18);
             this.dressNow.Name = "dressNow";
             this.dressNow.Size = new System.Drawing.Size(96, 32);
             this.dressNow.TabIndex = 6;
             this.dressNow.Text = "Dress";
             this.dressNow.Click += new System.EventHandler(this.dressNow_Click);
-            // 
+            //
             // groupBox5
-            // 
+            //
             this.groupBox5.Controls.Add(this.removeDress);
             this.groupBox5.Controls.Add(this.addDress);
             this.groupBox5.Controls.Add(this.dressList);
@@ -3070,27 +3067,27 @@ namespace Assistant
             this.groupBox5.TabIndex = 6;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Arm/Dress Selection";
-            // 
+            //
             // removeDress
-            // 
+            //
             this.removeDress.Location = new System.Drawing.Point(121, 254);
             this.removeDress.Name = "removeDress";
             this.removeDress.Size = new System.Drawing.Size(60, 25);
             this.removeDress.TabIndex = 5;
             this.removeDress.Text = "Remove";
             this.removeDress.Click += new System.EventHandler(this.removeDress_Click);
-            // 
+            //
             // addDress
-            // 
+            //
             this.addDress.Location = new System.Drawing.Point(6, 254);
             this.addDress.Name = "addDress";
             this.addDress.Size = new System.Drawing.Size(60, 25);
             this.addDress.TabIndex = 4;
             this.addDress.Text = "Add...";
             this.addDress.Click += new System.EventHandler(this.addDress_Click);
-            // 
+            //
             // dressList
-            // 
+            //
             this.dressList.IntegralHeight = false;
             this.dressList.ItemHeight = 15;
             this.dressList.Location = new System.Drawing.Point(6, 18);
@@ -3098,18 +3095,18 @@ namespace Assistant
             this.dressList.Size = new System.Drawing.Size(175, 230);
             this.dressList.TabIndex = 3;
             this.dressList.SelectedIndexChanged += new System.EventHandler(this.dressList_SelectedIndexChanged);
-            // 
+            //
             // undressConflicts
-            // 
+            //
             this.undressConflicts.Location = new System.Drawing.Point(6, 285);
             this.undressConflicts.Name = "undressConflicts";
             this.undressConflicts.Size = new System.Drawing.Size(137, 18);
             this.undressConflicts.TabIndex = 6;
             this.undressConflicts.Text = "Auto-move conflicts";
             this.undressConflicts.CheckedChanged += new System.EventHandler(this.undressConflicts_CheckedChanged);
-            // 
+            //
             // skillsTab
-            // 
+            //
             this.skillsTab.Controls.Add(this.captureMibs);
             this.skillsTab.Controls.Add(this.dispDeltaOverhead);
             this.skillsTab.Controls.Add(this.logSkillChanges);
@@ -3127,9 +3124,9 @@ namespace Assistant
             this.skillsTab.Size = new System.Drawing.Size(519, 322);
             this.skillsTab.TabIndex = 2;
             this.skillsTab.Text = "Skills";
-            // 
+            //
             // captureMibs
-            // 
+            //
             this.captureMibs.Location = new System.Drawing.Point(356, 230);
             this.captureMibs.Name = "captureMibs";
             this.captureMibs.Size = new System.Drawing.Size(153, 19);
@@ -3137,9 +3134,9 @@ namespace Assistant
             this.captureMibs.Text = "Capture MIBs to file";
             this.captureMibs.UseVisualStyleBackColor = true;
             this.captureMibs.CheckedChanged += new System.EventHandler(this.captureMibs_CheckedChanged);
-            // 
+            //
             // dispDeltaOverhead
-            // 
+            //
             this.dispDeltaOverhead.AutoSize = true;
             this.dispDeltaOverhead.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.dispDeltaOverhead.Location = new System.Drawing.Point(441, 207);
@@ -3149,9 +3146,9 @@ namespace Assistant
             this.dispDeltaOverhead.Text = "Overhead";
             this.dispDeltaOverhead.UseVisualStyleBackColor = true;
             this.dispDeltaOverhead.CheckedChanged += new System.EventHandler(this.dispDeltaOverhead_CheckedChanged);
-            // 
+            //
             // logSkillChanges
-            // 
+            //
             this.logSkillChanges.Location = new System.Drawing.Point(356, 157);
             this.logSkillChanges.Name = "logSkillChanges";
             this.logSkillChanges.Size = new System.Drawing.Size(156, 19);
@@ -3159,36 +3156,36 @@ namespace Assistant
             this.logSkillChanges.Text = "Log skill changes";
             this.logSkillChanges.UseVisualStyleBackColor = true;
             this.logSkillChanges.CheckedChanged += new System.EventHandler(this.logSkillChanges_CheckedChanged);
-            // 
+            //
             // dispDelta
-            // 
+            //
             this.dispDelta.Location = new System.Drawing.Point(356, 182);
             this.dispDelta.Name = "dispDelta";
             this.dispDelta.Size = new System.Drawing.Size(156, 19);
             this.dispDelta.TabIndex = 11;
             this.dispDelta.Text = "Show skill/stat changes";
             this.dispDelta.CheckedChanged += new System.EventHandler(this.dispDelta_CheckedChanged);
-            // 
+            //
             // skillCopyAll
-            // 
+            //
             this.skillCopyAll.Location = new System.Drawing.Point(356, 119);
             this.skillCopyAll.Name = "skillCopyAll";
             this.skillCopyAll.Size = new System.Drawing.Size(156, 32);
             this.skillCopyAll.TabIndex = 9;
             this.skillCopyAll.Text = "Copy All";
             this.skillCopyAll.Click += new System.EventHandler(this.skillCopyAll_Click);
-            // 
+            //
             // skillCopySel
-            // 
+            //
             this.skillCopySel.Location = new System.Drawing.Point(356, 81);
             this.skillCopySel.Name = "skillCopySel";
             this.skillCopySel.Size = new System.Drawing.Size(156, 32);
             this.skillCopySel.TabIndex = 8;
             this.skillCopySel.Text = "Copy Selected";
             this.skillCopySel.Click += new System.EventHandler(this.skillCopySel_Click);
-            // 
+            //
             // baseTotal
-            // 
+            //
             this.baseTotal.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.baseTotal.Location = new System.Drawing.Point(428, 290);
             this.baseTotal.Name = "baseTotal";
@@ -3196,18 +3193,18 @@ namespace Assistant
             this.baseTotal.Size = new System.Drawing.Size(84, 23);
             this.baseTotal.TabIndex = 7;
             this.baseTotal.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
+            //
             // label1
-            // 
+            //
             this.label1.Location = new System.Drawing.Point(356, 289);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(75, 23);
             this.label1.TabIndex = 6;
             this.label1.Text = "Base Total:";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // locks
-            // 
+            //
             this.locks.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.locks.Items.AddRange(new object[] {
             "Up",
@@ -3217,27 +3214,27 @@ namespace Assistant
             this.locks.Name = "locks";
             this.locks.Size = new System.Drawing.Size(44, 23);
             this.locks.TabIndex = 5;
-            // 
+            //
             // setlocks
-            // 
+            //
             this.setlocks.Location = new System.Drawing.Point(356, 43);
             this.setlocks.Name = "setlocks";
             this.setlocks.Size = new System.Drawing.Size(106, 32);
             this.setlocks.TabIndex = 4;
             this.setlocks.Text = "Set all locks:";
             this.setlocks.Click += new System.EventHandler(this.OnSetSkillLocks);
-            // 
+            //
             // resetDelta
-            // 
+            //
             this.resetDelta.Location = new System.Drawing.Point(356, 5);
             this.resetDelta.Name = "resetDelta";
             this.resetDelta.Size = new System.Drawing.Size(156, 32);
             this.resetDelta.TabIndex = 3;
             this.resetDelta.Text = "Reset  +/-";
             this.resetDelta.Click += new System.EventHandler(this.OnResetSkillDelta);
-            // 
+            //
             // skillList
-            // 
+            //
             this.skillList.AutoArrange = false;
             this.skillList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.skillHDRName,
@@ -3256,39 +3253,39 @@ namespace Assistant
             this.skillList.View = System.Windows.Forms.View.Details;
             this.skillList.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnSkillColClick);
             this.skillList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.skillList_MouseDown);
-            // 
+            //
             // skillHDRName
-            // 
+            //
             this.skillHDRName.Text = "Skill Name";
             this.skillHDRName.Width = 112;
-            // 
+            //
             // skillHDRvalue
-            // 
+            //
             this.skillHDRvalue.Text = "Value";
             this.skillHDRvalue.Width = 46;
-            // 
+            //
             // skillHDRbase
-            // 
+            //
             this.skillHDRbase.Text = "Base";
             this.skillHDRbase.Width = 43;
-            // 
+            //
             // skillHDRdelta
-            // 
+            //
             this.skillHDRdelta.Text = "+/-";
             this.skillHDRdelta.Width = 40;
-            // 
+            //
             // skillHDRcap
-            // 
+            //
             this.skillHDRcap.Text = "Cap";
             this.skillHDRcap.Width = 40;
-            // 
+            //
             // skillHDRlock
-            // 
+            //
             this.skillHDRlock.Text = "Lock";
             this.skillHDRlock.Width = 40;
-            // 
+            //
             // agentsTab
-            // 
+            //
             this.agentsTab.Controls.Add(this.agentB6);
             this.agentsTab.Controls.Add(this.agentB5);
             this.agentsTab.Controls.Add(this.agentList);
@@ -3302,43 +3299,43 @@ namespace Assistant
             this.agentsTab.Size = new System.Drawing.Size(519, 322);
             this.agentsTab.TabIndex = 6;
             this.agentsTab.Text = "Agents";
-            // 
+            //
             // agentB6
-            // 
+            //
             this.agentB6.Location = new System.Drawing.Point(8, 231);
             this.agentB6.Name = "agentB6";
             this.agentB6.Size = new System.Drawing.Size(130, 32);
             this.agentB6.TabIndex = 6;
             this.agentB6.Click += new System.EventHandler(this.agentB6_Click);
-            // 
+            //
             // agentB5
-            // 
+            //
             this.agentB5.Location = new System.Drawing.Point(8, 193);
             this.agentB5.Name = "agentB5";
             this.agentB5.Size = new System.Drawing.Size(130, 32);
             this.agentB5.TabIndex = 5;
             this.agentB5.Click += new System.EventHandler(this.agentB5_Click);
-            // 
+            //
             // agentList
-            // 
+            //
             this.agentList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.agentList.Location = new System.Drawing.Point(8, 14);
             this.agentList.Name = "agentList";
             this.agentList.Size = new System.Drawing.Size(130, 23);
             this.agentList.TabIndex = 2;
             this.agentList.SelectedIndexChanged += new System.EventHandler(this.agentList_SelectedIndexChanged);
-            // 
+            //
             // agentGroup
-            // 
+            //
             this.agentGroup.Controls.Add(this.agentSubList);
             this.agentGroup.Location = new System.Drawing.Point(144, 3);
             this.agentGroup.Name = "agentGroup";
             this.agentGroup.Size = new System.Drawing.Size(368, 309);
             this.agentGroup.TabIndex = 1;
             this.agentGroup.TabStop = false;
-            // 
+            //
             // agentSubList
-            // 
+            //
             this.agentSubList.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.agentSubList.IntegralHeight = false;
             this.agentSubList.ItemHeight = 15;
@@ -3347,41 +3344,41 @@ namespace Assistant
             this.agentSubList.Size = new System.Drawing.Size(356, 288);
             this.agentSubList.TabIndex = 0;
             this.agentSubList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.agentSubList_MouseDown);
-            // 
+            //
             // agentB4
-            // 
+            //
             this.agentB4.Location = new System.Drawing.Point(8, 155);
             this.agentB4.Name = "agentB4";
             this.agentB4.Size = new System.Drawing.Size(130, 32);
             this.agentB4.TabIndex = 4;
             this.agentB4.Click += new System.EventHandler(this.agentB4_Click);
-            // 
+            //
             // agentB1
-            // 
+            //
             this.agentB1.Location = new System.Drawing.Point(8, 41);
             this.agentB1.Name = "agentB1";
             this.agentB1.Size = new System.Drawing.Size(130, 32);
             this.agentB1.TabIndex = 1;
             this.agentB1.Click += new System.EventHandler(this.agentB1_Click);
-            // 
+            //
             // agentB2
-            // 
+            //
             this.agentB2.Location = new System.Drawing.Point(8, 79);
             this.agentB2.Name = "agentB2";
             this.agentB2.Size = new System.Drawing.Size(130, 32);
             this.agentB2.TabIndex = 2;
             this.agentB2.Click += new System.EventHandler(this.agentB2_Click);
-            // 
+            //
             // agentB3
-            // 
+            //
             this.agentB3.Location = new System.Drawing.Point(8, 117);
             this.agentB3.Name = "agentB3";
             this.agentB3.Size = new System.Drawing.Size(130, 32);
             this.agentB3.TabIndex = 3;
             this.agentB3.Click += new System.EventHandler(this.agentB3_Click);
-            // 
+            //
             // filtersTab
-            // 
+            //
             this.filtersTab.BackColor = System.Drawing.SystemColors.Control;
             this.filtersTab.Controls.Add(this.filterTabs);
             this.filtersTab.Location = new System.Drawing.Point(4, 44);
@@ -3389,9 +3386,9 @@ namespace Assistant
             this.filtersTab.Size = new System.Drawing.Size(519, 322);
             this.filtersTab.TabIndex = 15;
             this.filtersTab.Text = "Filters";
-            // 
+            //
             // filterTabs
-            // 
+            //
             this.filterTabs.Controls.Add(this.subFilterTab);
             this.filterTabs.Controls.Add(this.subFilterTargets);
             this.filterTabs.Controls.Add(this.subSoundMusicTab);
@@ -3401,9 +3398,9 @@ namespace Assistant
             this.filterTabs.Size = new System.Drawing.Size(506, 313);
             this.filterTabs.TabIndex = 1;
             this.filterTabs.SelectedIndexChanged += new System.EventHandler(this.filterTabs_IndexChanged);
-            // 
+            //
             // subFilterTab
-            // 
+            //
             this.subFilterTab.BackColor = System.Drawing.SystemColors.Control;
             this.subFilterTab.Controls.Add(this.daemonAnimationList);
             this.subFilterTab.Controls.Add(this.filterDaemonGraphics);
@@ -3425,9 +3422,9 @@ namespace Assistant
             this.subFilterTab.Size = new System.Drawing.Size(498, 285);
             this.subFilterTab.TabIndex = 0;
             this.subFilterTab.Text = "Filters";
-            // 
+            //
             // daemonAnimationList
-            // 
+            //
             this.daemonAnimationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.daemonAnimationList.DropDownWidth = 250;
             this.daemonAnimationList.FormattingEnabled = true;
@@ -3436,9 +3433,9 @@ namespace Assistant
             this.daemonAnimationList.Size = new System.Drawing.Size(163, 23);
             this.daemonAnimationList.TabIndex = 127;
             this.daemonAnimationList.SelectedIndexChanged += new System.EventHandler(this.daemonAnimationList_SelectedIndexChanged);
-            // 
+            //
             // filterDaemonGraphics
-            // 
+            //
             this.filterDaemonGraphics.AutoSize = true;
             this.filterDaemonGraphics.Location = new System.Drawing.Point(209, 66);
             this.filterDaemonGraphics.Name = "filterDaemonGraphics";
@@ -3447,35 +3444,35 @@ namespace Assistant
             this.filterDaemonGraphics.Text = "Filter daemons";
             this.filterDaemonGraphics.UseVisualStyleBackColor = true;
             this.filterDaemonGraphics.CheckedChanged += new System.EventHandler(this.filterDaemonGraphics_CheckedChanged);
-            // 
+            //
             // filterOverheadMessages
-            // 
+            //
             this.filterOverheadMessages.Location = new System.Drawing.Point(209, 187);
             this.filterOverheadMessages.Name = "filterOverheadMessages";
             this.filterOverheadMessages.Size = new System.Drawing.Size(220, 20);
             this.filterOverheadMessages.TabIndex = 125;
             this.filterOverheadMessages.Text = "Filter repeating overhead messages";
             this.filterOverheadMessages.CheckedChanged += new System.EventHandler(this.filterOverheadMessages_CheckedChanged);
-            // 
+            //
             // lblFilterDelaySeconds
-            // 
+            //
             this.lblFilterDelaySeconds.Location = new System.Drawing.Point(346, 217);
             this.lblFilterDelaySeconds.Name = "lblFilterDelaySeconds";
             this.lblFilterDelaySeconds.Size = new System.Drawing.Size(59, 18);
             this.lblFilterDelaySeconds.TabIndex = 124;
             this.lblFilterDelaySeconds.Text = "seconds";
-            // 
+            //
             // lblFilterDelay
-            // 
+            //
             this.lblFilterDelay.AutoSize = true;
             this.lblFilterDelay.Location = new System.Drawing.Point(230, 217);
             this.lblFilterDelay.Name = "lblFilterDelay";
             this.lblFilterDelay.Size = new System.Drawing.Size(68, 15);
             this.lblFilterDelay.TabIndex = 123;
             this.lblFilterDelay.Text = "Filter Delay:";
-            // 
+            //
             // filterDelaySeconds
-            // 
+            //
             this.filterDelaySeconds.Location = new System.Drawing.Point(304, 214);
             this.filterDelaySeconds.Name = "filterDelaySeconds";
             this.filterDelaySeconds.Size = new System.Drawing.Size(36, 23);
@@ -3483,36 +3480,36 @@ namespace Assistant
             this.filterDelaySeconds.Text = "3.5";
             this.filterDelaySeconds.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.filterDelaySeconds.TextChanged += new System.EventHandler(this.filterDelaySeconds_TextChanged);
-            // 
+            //
             // filterRazorMessages
-            // 
+            //
             this.filterRazorMessages.Location = new System.Drawing.Point(209, 161);
             this.filterRazorMessages.Name = "filterRazorMessages";
             this.filterRazorMessages.Size = new System.Drawing.Size(220, 20);
             this.filterRazorMessages.TabIndex = 121;
             this.filterRazorMessages.Text = "Filter repeating Razor messages";
             this.filterRazorMessages.CheckedChanged += new System.EventHandler(this.filterRazorMessages_CheckedChanged);
-            // 
+            //
             // filterSystemMessages
-            // 
+            //
             this.filterSystemMessages.Location = new System.Drawing.Point(209, 135);
             this.filterSystemMessages.Name = "filterSystemMessages";
             this.filterSystemMessages.Size = new System.Drawing.Size(220, 20);
             this.filterSystemMessages.TabIndex = 120;
             this.filterSystemMessages.Text = "Filter repeating system messages";
             this.filterSystemMessages.CheckedChanged += new System.EventHandler(this.filterSystemMessages_CheckedChanged);
-            // 
+            //
             // filterSnoop
-            // 
+            //
             this.filterSnoop.Location = new System.Drawing.Point(209, 109);
             this.filterSnoop.Name = "filterSnoop";
             this.filterSnoop.Size = new System.Drawing.Size(220, 20);
             this.filterSnoop.TabIndex = 119;
             this.filterSnoop.Text = "Filter snooping messages";
             this.filterSnoop.CheckedChanged += new System.EventHandler(this.filterSnoop_CheckedChanged);
-            // 
+            //
             // drakeAnimationList
-            // 
+            //
             this.drakeAnimationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.drakeAnimationList.DropDownWidth = 250;
             this.drakeAnimationList.FormattingEnabled = true;
@@ -3521,9 +3518,9 @@ namespace Assistant
             this.drakeAnimationList.Size = new System.Drawing.Size(163, 23);
             this.drakeAnimationList.TabIndex = 118;
             this.drakeAnimationList.SelectedIndexChanged += new System.EventHandler(this.drakeAnimationList_SelectedIndexChanged);
-            // 
+            //
             // filterDrakeGraphics
-            // 
+            //
             this.filterDrakeGraphics.AutoSize = true;
             this.filterDrakeGraphics.Location = new System.Drawing.Point(209, 37);
             this.filterDrakeGraphics.Name = "filterDrakeGraphics";
@@ -3532,9 +3529,9 @@ namespace Assistant
             this.filterDrakeGraphics.Text = "Filter drakes";
             this.filterDrakeGraphics.UseVisualStyleBackColor = true;
             this.filterDrakeGraphics.CheckedChanged += new System.EventHandler(this.filterDrakeGraphics_CheckedChanged);
-            // 
+            //
             // dragonAnimationList
-            // 
+            //
             this.dragonAnimationList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.dragonAnimationList.DropDownWidth = 250;
             this.dragonAnimationList.FormattingEnabled = true;
@@ -3543,9 +3540,9 @@ namespace Assistant
             this.dragonAnimationList.Size = new System.Drawing.Size(163, 23);
             this.dragonAnimationList.TabIndex = 116;
             this.dragonAnimationList.SelectedIndexChanged += new System.EventHandler(this.dragonAnimationList_SelectedIndexChanged);
-            // 
+            //
             // filterDragonGraphics
-            // 
+            //
             this.filterDragonGraphics.AutoSize = true;
             this.filterDragonGraphics.Location = new System.Drawing.Point(209, 8);
             this.filterDragonGraphics.Name = "filterDragonGraphics";
@@ -3554,9 +3551,9 @@ namespace Assistant
             this.filterDragonGraphics.Text = "Filter dragons";
             this.filterDragonGraphics.UseVisualStyleBackColor = true;
             this.filterDragonGraphics.CheckedChanged += new System.EventHandler(this.filterDragonGraphics_CheckedChanged);
-            // 
+            //
             // filters
-            // 
+            //
             this.filters.CheckOnClick = true;
             this.filters.IntegralHeight = false;
             this.filters.Location = new System.Drawing.Point(6, 6);
@@ -3564,9 +3561,9 @@ namespace Assistant
             this.filters.Size = new System.Drawing.Size(197, 273);
             this.filters.TabIndex = 114;
             this.filters.ItemCheck += new System.Windows.Forms.ItemCheckEventHandler(this.OnFilterCheck);
-            // 
+            //
             // subFilterTargets
-            // 
+            //
             this.subFilterTargets.BackColor = System.Drawing.SystemColors.Control;
             this.subFilterTargets.Controls.Add(this.lblTargetFilter);
             this.subFilterTargets.Controls.Add(this.targetFilterClear);
@@ -3580,18 +3577,18 @@ namespace Assistant
             this.subFilterTargets.Size = new System.Drawing.Size(498, 287);
             this.subFilterTargets.TabIndex = 1;
             this.subFilterTargets.Text = "Target Filter";
-            // 
+            //
             // lblTargetFilter
-            // 
+            //
             this.lblTargetFilter.Location = new System.Drawing.Point(6, 84);
             this.lblTargetFilter.Name = "lblTargetFilter";
             this.lblTargetFilter.Size = new System.Drawing.Size(217, 52);
             this.lblTargetFilter.TabIndex = 18;
             this.lblTargetFilter.Text = "Targets added to this list will be ignored by Razor completely when using any tar" +
     "get hotkeys.";
-            // 
+            //
             // targetFilterClear
-            // 
+            //
             this.targetFilterClear.Location = new System.Drawing.Point(415, 241);
             this.targetFilterClear.Name = "targetFilterClear";
             this.targetFilterClear.Size = new System.Drawing.Size(77, 29);
@@ -3599,9 +3596,9 @@ namespace Assistant
             this.targetFilterClear.Text = "Clear List";
             this.targetFilterClear.UseVisualStyleBackColor = true;
             this.targetFilterClear.Click += new System.EventHandler(this.TargetFilterClear_Click);
-            // 
+            //
             // targetFilterRemove
-            // 
+            //
             this.targetFilterRemove.Location = new System.Drawing.Point(335, 241);
             this.targetFilterRemove.Name = "targetFilterRemove";
             this.targetFilterRemove.Size = new System.Drawing.Size(74, 29);
@@ -3609,9 +3606,9 @@ namespace Assistant
             this.targetFilterRemove.Text = "Remove";
             this.targetFilterRemove.UseVisualStyleBackColor = true;
             this.targetFilterRemove.Click += new System.EventHandler(this.TargetFilterRemove_Click);
-            // 
+            //
             // targetFilterAdd
-            // 
+            //
             this.targetFilterAdd.Location = new System.Drawing.Point(247, 241);
             this.targetFilterAdd.Name = "targetFilterAdd";
             this.targetFilterAdd.Size = new System.Drawing.Size(82, 29);
@@ -3619,18 +3616,18 @@ namespace Assistant
             this.targetFilterAdd.Text = "Add (Target)";
             this.targetFilterAdd.UseVisualStyleBackColor = true;
             this.targetFilterAdd.Click += new System.EventHandler(this.TargetFilterAdd_Click);
-            // 
+            //
             // targetFilter
-            // 
+            //
             this.targetFilter.FormattingEnabled = true;
             this.targetFilter.ItemHeight = 15;
             this.targetFilter.Location = new System.Drawing.Point(247, 6);
             this.targetFilter.Name = "targetFilter";
             this.targetFilter.Size = new System.Drawing.Size(245, 229);
             this.targetFilter.TabIndex = 14;
-            // 
+            //
             // targetFilterEnabled
-            // 
+            //
             this.targetFilterEnabled.AutoSize = true;
             this.targetFilterEnabled.Location = new System.Drawing.Point(6, 6);
             this.targetFilterEnabled.Name = "targetFilterEnabled";
@@ -3639,9 +3636,9 @@ namespace Assistant
             this.targetFilterEnabled.Text = "Target Filter Enabled";
             this.targetFilterEnabled.UseVisualStyleBackColor = true;
             this.targetFilterEnabled.CheckedChanged += new System.EventHandler(this.TargetFilterEnabled_CheckedChanged);
-            // 
+            //
             // subSoundMusicTab
-            // 
+            //
             this.subSoundMusicTab.BackColor = System.Drawing.SystemColors.Control;
             this.subSoundMusicTab.Controls.Add(this.playableMusicList);
             this.subSoundMusicTab.Controls.Add(this.playMusic);
@@ -3657,18 +3654,18 @@ namespace Assistant
             this.subSoundMusicTab.Size = new System.Drawing.Size(498, 287);
             this.subSoundMusicTab.TabIndex = 3;
             this.subSoundMusicTab.Text = "Sound & Music  ";
-            // 
+            //
             // playableMusicList
-            // 
+            //
             this.playableMusicList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.playableMusicList.FormattingEnabled = true;
             this.playableMusicList.Location = new System.Drawing.Point(215, 151);
             this.playableMusicList.Name = "playableMusicList";
             this.playableMusicList.Size = new System.Drawing.Size(145, 23);
             this.playableMusicList.TabIndex = 8;
-            // 
+            //
             // playMusic
-            // 
+            //
             this.playMusic.Location = new System.Drawing.Point(215, 180);
             this.playMusic.Name = "playMusic";
             this.playMusic.Size = new System.Drawing.Size(132, 23);
@@ -3676,9 +3673,9 @@ namespace Assistant
             this.playMusic.Text = "Play Music In Client";
             this.playMusic.UseVisualStyleBackColor = true;
             this.playMusic.Click += new System.EventHandler(this.playMusic_Click);
-            // 
+            //
             // showPlayingMusic
-            // 
+            //
             this.showPlayingMusic.AutoSize = true;
             this.showPlayingMusic.Location = new System.Drawing.Point(215, 215);
             this.showPlayingMusic.Name = "showPlayingMusic";
@@ -3687,9 +3684,9 @@ namespace Assistant
             this.showPlayingMusic.Text = "Show playing music info";
             this.showPlayingMusic.UseVisualStyleBackColor = true;
             this.showPlayingMusic.CheckedChanged += new System.EventHandler(this.showPlayingMusic_CheckedChanged);
-            // 
+            //
             // showPlayingSoundInfo
-            // 
+            //
             this.showPlayingSoundInfo.AutoSize = true;
             this.showPlayingSoundInfo.Location = new System.Drawing.Point(215, 106);
             this.showPlayingSoundInfo.Name = "showPlayingSoundInfo";
@@ -3698,9 +3695,9 @@ namespace Assistant
             this.showPlayingSoundInfo.Text = "Show non-filtered sound info";
             this.showPlayingSoundInfo.UseVisualStyleBackColor = true;
             this.showPlayingSoundInfo.CheckedChanged += new System.EventHandler(this.showPlayingSoundInfo_CheckedChanged);
-            // 
+            //
             // showFilteredSound
-            // 
+            //
             this.showFilteredSound.AutoSize = true;
             this.showFilteredSound.Location = new System.Drawing.Point(215, 81);
             this.showFilteredSound.Name = "showFilteredSound";
@@ -3709,9 +3706,9 @@ namespace Assistant
             this.showFilteredSound.Text = "Show filtered sound info";
             this.showFilteredSound.UseVisualStyleBackColor = true;
             this.showFilteredSound.CheckedChanged += new System.EventHandler(this.showFilteredSound_CheckedChanged);
-            // 
+            //
             // playInClient
-            // 
+            //
             this.playInClient.AutoSize = true;
             this.playInClient.Location = new System.Drawing.Point(348, 42);
             this.playInClient.Name = "playInClient";
@@ -3719,9 +3716,9 @@ namespace Assistant
             this.playInClient.TabIndex = 3;
             this.playInClient.Text = "Play in client";
             this.playInClient.UseVisualStyleBackColor = true;
-            // 
+            //
             // playSound
-            // 
+            //
             this.playSound.Location = new System.Drawing.Point(215, 39);
             this.playSound.Name = "playSound";
             this.playSound.Size = new System.Drawing.Size(127, 23);
@@ -3729,9 +3726,9 @@ namespace Assistant
             this.playSound.Text = "Play Selected Sound";
             this.playSound.UseVisualStyleBackColor = true;
             this.playSound.Click += new System.EventHandler(this.playSound_Click);
-            // 
+            //
             // soundFilterEnabled
-            // 
+            //
             this.soundFilterEnabled.AutoSize = true;
             this.soundFilterEnabled.Location = new System.Drawing.Point(215, 14);
             this.soundFilterEnabled.Name = "soundFilterEnabled";
@@ -3740,18 +3737,18 @@ namespace Assistant
             this.soundFilterEnabled.Text = "Enable Sound Filter";
             this.soundFilterEnabled.UseVisualStyleBackColor = true;
             this.soundFilterEnabled.CheckedChanged += new System.EventHandler(this.soundFilterEnabled_CheckedChanged);
-            // 
+            //
             // soundFilterList
-            // 
+            //
             this.soundFilterList.FormattingEnabled = true;
             this.soundFilterList.Location = new System.Drawing.Point(16, 14);
             this.soundFilterList.Name = "soundFilterList";
             this.soundFilterList.Size = new System.Drawing.Size(193, 256);
             this.soundFilterList.TabIndex = 0;
             this.soundFilterList.SelectedIndexChanged += new System.EventHandler(this.soundFilterList_SelectedIndexChanged);
-            // 
+            //
             // hotkeysTab
-            // 
+            //
             this.hotkeysTab.Controls.Add(this.filterHotkeys);
             this.hotkeysTab.Controls.Add(this.label22);
             this.hotkeysTab.Controls.Add(this.hkStatus);
@@ -3763,35 +3760,35 @@ namespace Assistant
             this.hotkeysTab.Size = new System.Drawing.Size(519, 322);
             this.hotkeysTab.TabIndex = 4;
             this.hotkeysTab.Text = "Hot Keys";
-            // 
+            //
             // filterHotkeys
-            // 
+            //
             this.filterHotkeys.Location = new System.Drawing.Point(50, 8);
             this.filterHotkeys.Name = "filterHotkeys";
             this.filterHotkeys.Size = new System.Drawing.Size(281, 23);
             this.filterHotkeys.TabIndex = 9;
             this.filterHotkeys.TextChanged += new System.EventHandler(this.filterHotkeys_TextChanged);
-            // 
+            //
             // label22
-            // 
+            //
             this.label22.AutoSize = true;
             this.label22.Location = new System.Drawing.Point(8, 11);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(36, 15);
             this.label22.TabIndex = 8;
             this.label22.Text = "Filter:";
-            // 
+            //
             // hkStatus
-            // 
+            //
             this.hkStatus.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.hkStatus.Location = new System.Drawing.Point(337, 206);
             this.hkStatus.Name = "hkStatus";
             this.hkStatus.Size = new System.Drawing.Size(175, 64);
             this.hkStatus.TabIndex = 7;
             this.hkStatus.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // hotkeyTree
-            // 
+            //
             this.hotkeyTree.HideSelection = false;
             this.hotkeyTree.Location = new System.Drawing.Point(8, 37);
             this.hotkeyTree.Name = "hotkeyTree";
@@ -3799,18 +3796,18 @@ namespace Assistant
             this.hotkeyTree.Sorted = true;
             this.hotkeyTree.TabIndex = 6;
             this.hotkeyTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.hotkeyTree_AfterSelect);
-            // 
+            //
             // dohotkey
-            // 
+            //
             this.dohotkey.Location = new System.Drawing.Point(337, 140);
             this.dohotkey.Name = "dohotkey";
             this.dohotkey.Size = new System.Drawing.Size(175, 29);
             this.dohotkey.TabIndex = 5;
             this.dohotkey.Text = "Execute Selected Hot Key";
             this.dohotkey.Click += new System.EventHandler(this.dohotkey_Click);
-            // 
+            //
             // groupBox8
-            // 
+            //
             this.groupBox8.Controls.Add(this.chkAlt);
             this.groupBox8.Controls.Add(this.chkPass);
             this.groupBox8.Controls.Add(this.label2);
@@ -3825,51 +3822,51 @@ namespace Assistant
             this.groupBox8.TabIndex = 4;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Hot Key";
-            // 
+            //
             // chkAlt
-            // 
+            //
             this.chkAlt.Location = new System.Drawing.Point(58, 20);
             this.chkAlt.Name = "chkAlt";
             this.chkAlt.Size = new System.Drawing.Size(49, 16);
             this.chkAlt.TabIndex = 2;
             this.chkAlt.Text = "Alt";
-            // 
+            //
             // chkPass
-            // 
+            //
             this.chkPass.Location = new System.Drawing.Point(11, 69);
             this.chkPass.Name = "chkPass";
             this.chkPass.Size = new System.Drawing.Size(113, 16);
             this.chkPass.TabIndex = 9;
             this.chkPass.Text = "Pass to UO";
-            // 
+            //
             // label2
-            // 
+            //
             this.label2.Location = new System.Drawing.Point(8, 44);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(28, 20);
             this.label2.TabIndex = 8;
             this.label2.Text = "Key:";
-            // 
+            //
             // unsetHK
-            // 
+            //
             this.unsetHK.Location = new System.Drawing.Point(8, 90);
             this.unsetHK.Name = "unsetHK";
             this.unsetHK.Size = new System.Drawing.Size(56, 26);
             this.unsetHK.TabIndex = 6;
             this.unsetHK.Text = "Unset";
             this.unsetHK.Click += new System.EventHandler(this.unsetHK_Click);
-            // 
+            //
             // setHK
-            // 
+            //
             this.setHK.Location = new System.Drawing.Point(113, 90);
             this.setHK.Name = "setHK";
             this.setHK.Size = new System.Drawing.Size(56, 26);
             this.setHK.TabIndex = 5;
             this.setHK.Text = "Set";
             this.setHK.Click += new System.EventHandler(this.setHK_Click);
-            // 
+            //
             // key
-            // 
+            //
             this.key.Location = new System.Drawing.Point(36, 40);
             this.key.Name = "key";
             this.key.ReadOnly = true;
@@ -3879,34 +3876,34 @@ namespace Assistant
             this.key.KeyUp += new System.Windows.Forms.KeyEventHandler(this.key_KeyUp);
             this.key.MouseDown += new System.Windows.Forms.MouseEventHandler(this.key_MouseDown);
             this.key.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.key_MouseWheel);
-            // 
+            //
             // chkCtrl
-            // 
+            //
             this.chkCtrl.Location = new System.Drawing.Point(8, 20);
             this.chkCtrl.Name = "chkCtrl";
             this.chkCtrl.Size = new System.Drawing.Size(56, 16);
             this.chkCtrl.TabIndex = 1;
             this.chkCtrl.Text = "Ctrl";
-            // 
+            //
             // chkShift
-            // 
+            //
             this.chkShift.Location = new System.Drawing.Point(113, 20);
             this.chkShift.Name = "chkShift";
             this.chkShift.Size = new System.Drawing.Size(56, 16);
             this.chkShift.TabIndex = 3;
             this.chkShift.Text = "Shift";
-            // 
+            //
             // macrosTab
-            // 
+            //
             this.macrosTab.Controls.Add(this.tabControl2);
             this.macrosTab.Location = new System.Drawing.Point(4, 44);
             this.macrosTab.Name = "macrosTab";
             this.macrosTab.Size = new System.Drawing.Size(519, 322);
             this.macrosTab.TabIndex = 7;
             this.macrosTab.Text = "Macros";
-            // 
+            //
             // tabControl2
-            // 
+            //
             this.tabControl2.Controls.Add(this.subMacrosTab);
             this.tabControl2.Controls.Add(this.subMacrosOptionsTab);
             this.tabControl2.Location = new System.Drawing.Point(6, 3);
@@ -3914,9 +3911,9 @@ namespace Assistant
             this.tabControl2.SelectedIndex = 0;
             this.tabControl2.Size = new System.Drawing.Size(510, 314);
             this.tabControl2.TabIndex = 13;
-            // 
+            //
             // subMacrosTab
-            // 
+            //
             this.subMacrosTab.BackColor = System.Drawing.SystemColors.Control;
             this.subMacrosTab.Controls.Add(this.macroActGroup);
             this.subMacrosTab.Controls.Add(this.filterMacros);
@@ -3930,9 +3927,9 @@ namespace Assistant
             this.subMacrosTab.Size = new System.Drawing.Size(502, 286);
             this.subMacrosTab.TabIndex = 0;
             this.subMacrosTab.Text = "Macros";
-            // 
+            //
             // macroActGroup
-            // 
+            //
             this.macroActGroup.Controls.Add(this.setMacroHotKey);
             this.macroActGroup.Controls.Add(this.playMacro);
             this.macroActGroup.Controls.Add(this.waitDisp);
@@ -3946,35 +3943,35 @@ namespace Assistant
             this.macroActGroup.TabStop = false;
             this.macroActGroup.Text = "Actions";
             this.macroActGroup.Visible = false;
-            // 
+            //
             // setMacroHotKey
-            // 
+            //
             this.setMacroHotKey.Location = new System.Drawing.Point(230, 95);
             this.setMacroHotKey.Name = "setMacroHotKey";
             this.setMacroHotKey.Size = new System.Drawing.Size(60, 33);
             this.setMacroHotKey.TabIndex = 7;
             this.setMacroHotKey.Text = "Set HK";
             this.setMacroHotKey.Click += new System.EventHandler(this.SetMacroHotKey_Click);
-            // 
+            //
             // playMacro
-            // 
+            //
             this.playMacro.Location = new System.Drawing.Point(230, 17);
             this.playMacro.Name = "playMacro";
             this.playMacro.Size = new System.Drawing.Size(60, 33);
             this.playMacro.TabIndex = 6;
             this.playMacro.Text = "Play";
             this.playMacro.Click += new System.EventHandler(this.playMacro_Click);
-            // 
+            //
             // waitDisp
-            // 
+            //
             this.waitDisp.Location = new System.Drawing.Point(230, 132);
             this.waitDisp.Name = "waitDisp";
             this.waitDisp.Size = new System.Drawing.Size(60, 89);
             this.waitDisp.TabIndex = 5;
             this.waitDisp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // loopMacro
-            // 
+            //
             this.loopMacro.Location = new System.Drawing.Point(233, 242);
             this.loopMacro.Name = "loopMacro";
             this.loopMacro.Size = new System.Drawing.Size(57, 24);
@@ -3982,18 +3979,18 @@ namespace Assistant
             this.loopMacro.Text = "Loop";
             this.loopMacro.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.loopMacro.CheckedChanged += new System.EventHandler(this.loopMacro_CheckedChanged);
-            // 
+            //
             // recMacro
-            // 
+            //
             this.recMacro.Location = new System.Drawing.Point(230, 56);
             this.recMacro.Name = "recMacro";
             this.recMacro.Size = new System.Drawing.Size(60, 33);
             this.recMacro.TabIndex = 3;
             this.recMacro.Text = "Record";
             this.recMacro.Click += new System.EventHandler(this.recMacro_Click);
-            // 
+            //
             // actionList
-            // 
+            //
             this.actionList.BackColor = System.Drawing.SystemColors.Window;
             this.actionList.HorizontalScrollbar = true;
             this.actionList.IntegralHeight = false;
@@ -4004,26 +4001,26 @@ namespace Assistant
             this.actionList.TabIndex = 0;
             this.actionList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.actionList_KeyDown);
             this.actionList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.actionList_MouseDown);
-            // 
+            //
             // filterMacros
-            // 
+            //
             this.filterMacros.Location = new System.Drawing.Point(47, 7);
             this.filterMacros.Name = "filterMacros";
             this.filterMacros.Size = new System.Drawing.Size(147, 23);
             this.filterMacros.TabIndex = 17;
             this.filterMacros.TextChanged += new System.EventHandler(this.filterMacros_TextChanged);
-            // 
+            //
             // filterLabel
-            // 
+            //
             this.filterLabel.AutoSize = true;
             this.filterLabel.Location = new System.Drawing.Point(5, 10);
             this.filterLabel.Name = "filterLabel";
             this.filterLabel.Size = new System.Drawing.Size(36, 15);
             this.filterLabel.TabIndex = 16;
             this.filterLabel.Text = "Filter:";
-            // 
+            //
             // macroTree
-            // 
+            //
             this.macroTree.FullRowSelect = true;
             this.macroTree.HideSelection = false;
             this.macroTree.Location = new System.Drawing.Point(6, 36);
@@ -4033,27 +4030,27 @@ namespace Assistant
             this.macroTree.TabIndex = 15;
             this.macroTree.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.macroTree_AfterSelect);
             this.macroTree.MouseDown += new System.Windows.Forms.MouseEventHandler(this.macroTree_MouseDown);
-            // 
+            //
             // delMacro
-            // 
+            //
             this.delMacro.Location = new System.Drawing.Point(120, 245);
             this.delMacro.Name = "delMacro";
             this.delMacro.Size = new System.Drawing.Size(74, 30);
             this.delMacro.TabIndex = 14;
             this.delMacro.Text = "Remove";
             this.delMacro.Click += new System.EventHandler(this.delMacro_Click);
-            // 
+            //
             // newMacro
-            // 
+            //
             this.newMacro.Location = new System.Drawing.Point(8, 245);
             this.newMacro.Name = "newMacro";
             this.newMacro.Size = new System.Drawing.Size(74, 30);
             this.newMacro.TabIndex = 13;
             this.newMacro.Text = "New...";
             this.newMacro.Click += new System.EventHandler(this.newMacro_Click);
-            // 
+            //
             // subMacrosOptionsTab
-            // 
+            //
             this.subMacrosOptionsTab.BackColor = System.Drawing.SystemColors.Control;
             this.subMacrosOptionsTab.Controls.Add(this.disableMacroPlayFinish);
             this.subMacrosOptionsTab.Controls.Add(this.macroActionDelay);
@@ -4069,9 +4066,9 @@ namespace Assistant
             this.subMacrosOptionsTab.Size = new System.Drawing.Size(502, 288);
             this.subMacrosOptionsTab.TabIndex = 1;
             this.subMacrosOptionsTab.Text = "Options";
-            // 
+            //
             // disableMacroPlayFinish
-            // 
+            //
             this.disableMacroPlayFinish.AutoSize = true;
             this.disableMacroPlayFinish.Location = new System.Drawing.Point(272, 183);
             this.disableMacroPlayFinish.Name = "disableMacroPlayFinish";
@@ -4080,9 +4077,9 @@ namespace Assistant
             this.disableMacroPlayFinish.Text = "Disable Playing/Finished Message";
             this.disableMacroPlayFinish.UseVisualStyleBackColor = true;
             this.disableMacroPlayFinish.CheckedChanged += new System.EventHandler(this.disableMacroPlayFinish_CheckedChanged);
-            // 
+            //
             // macroActionDelay
-            // 
+            //
             this.macroActionDelay.AutoSize = true;
             this.macroActionDelay.Location = new System.Drawing.Point(272, 158);
             this.macroActionDelay.Name = "macroActionDelay";
@@ -4091,9 +4088,9 @@ namespace Assistant
             this.macroActionDelay.Text = "Default macro action delay (50ms)";
             this.macroActionDelay.UseVisualStyleBackColor = true;
             this.macroActionDelay.CheckedChanged += new System.EventHandler(this.macroActionDelay_CheckedChanged);
-            // 
+            //
             // rangeCheckDoubleClick
-            // 
+            //
             this.rangeCheckDoubleClick.AutoSize = true;
             this.rangeCheckDoubleClick.Location = new System.Drawing.Point(272, 78);
             this.rangeCheckDoubleClick.Name = "rangeCheckDoubleClick";
@@ -4102,9 +4099,9 @@ namespace Assistant
             this.rangeCheckDoubleClick.Text = "Range check on \'DoubleClickType\'";
             this.rangeCheckDoubleClick.UseVisualStyleBackColor = true;
             this.rangeCheckDoubleClick.CheckedChanged += new System.EventHandler(this.rangeCheckDoubleClick_CheckedChanged);
-            // 
+            //
             // rangeCheckTargetByType
-            // 
+            //
             this.rangeCheckTargetByType.AutoSize = true;
             this.rangeCheckTargetByType.Location = new System.Drawing.Point(272, 53);
             this.rangeCheckTargetByType.Name = "rangeCheckTargetByType";
@@ -4113,9 +4110,9 @@ namespace Assistant
             this.rangeCheckTargetByType.Text = "Range check on \'TargetByType\'";
             this.rangeCheckTargetByType.UseVisualStyleBackColor = true;
             this.rangeCheckTargetByType.CheckedChanged += new System.EventHandler(this.rangeCheckTargetByType_CheckedChanged);
-            // 
+            //
             // nextMacroAction
-            // 
+            //
             this.nextMacroAction.Enabled = false;
             this.nextMacroAction.Location = new System.Drawing.Point(412, 115);
             this.nextMacroAction.Name = "nextMacroAction";
@@ -4124,9 +4121,9 @@ namespace Assistant
             this.nextMacroAction.Text = "Next";
             this.nextMacroAction.UseVisualStyleBackColor = true;
             this.nextMacroAction.Click += new System.EventHandler(this.nextMacroAction_Click);
-            // 
+            //
             // stepThroughMacro
-            // 
+            //
             this.stepThroughMacro.AutoSize = true;
             this.stepThroughMacro.Location = new System.Drawing.Point(272, 118);
             this.stepThroughMacro.Name = "stepThroughMacro";
@@ -4135,9 +4132,9 @@ namespace Assistant
             this.stepThroughMacro.Text = "Step Through Macro";
             this.stepThroughMacro.UseVisualStyleBackColor = true;
             this.stepThroughMacro.CheckedChanged += new System.EventHandler(this.stepThroughMacro_CheckedChanged);
-            // 
+            //
             // targetByTypeDifferent
-            // 
+            //
             this.targetByTypeDifferent.AutoSize = true;
             this.targetByTypeDifferent.Location = new System.Drawing.Point(272, 28);
             this.targetByTypeDifferent.Name = "targetByTypeDifferent";
@@ -4146,9 +4143,9 @@ namespace Assistant
             this.targetByTypeDifferent.Text = "Force different \'TargetByType\'";
             this.targetByTypeDifferent.UseVisualStyleBackColor = true;
             this.targetByTypeDifferent.CheckedChanged += new System.EventHandler(this.targetByTypeDifferent_CheckedChanged);
-            // 
+            //
             // macroVariableGroup
-            // 
+            //
             this.macroVariableGroup.Controls.Add(this.macroVariableTypeList);
             this.macroVariableGroup.Controls.Add(this.retargetMacroVariable);
             this.macroVariableGroup.Controls.Add(this.insertMacroVariable);
@@ -4161,9 +4158,9 @@ namespace Assistant
             this.macroVariableGroup.TabIndex = 6;
             this.macroVariableGroup.TabStop = false;
             this.macroVariableGroup.Text = "Macro Variables:";
-            // 
+            //
             // macroVariableTypeList
-            // 
+            //
             this.macroVariableTypeList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.macroVariableTypeList.FormattingEnabled = true;
             this.macroVariableTypeList.Items.AddRange(new object[] {
@@ -4175,9 +4172,9 @@ namespace Assistant
             this.macroVariableTypeList.Size = new System.Drawing.Size(153, 23);
             this.macroVariableTypeList.TabIndex = 6;
             this.macroVariableTypeList.SelectedIndexChanged += new System.EventHandler(this.macroVariableTypeList_SelectedIndexChanged);
-            // 
+            //
             // retargetMacroVariable
-            // 
+            //
             this.retargetMacroVariable.Location = new System.Drawing.Point(6, 84);
             this.retargetMacroVariable.Name = "retargetMacroVariable";
             this.retargetMacroVariable.Size = new System.Drawing.Size(67, 25);
@@ -4185,9 +4182,9 @@ namespace Assistant
             this.retargetMacroVariable.Text = "Retarget";
             this.retargetMacroVariable.UseVisualStyleBackColor = true;
             this.retargetMacroVariable.Click += new System.EventHandler(this.retargetMacroVariable_Click);
-            // 
+            //
             // insertMacroVariable
-            // 
+            //
             this.insertMacroVariable.Location = new System.Drawing.Point(6, 22);
             this.insertMacroVariable.Name = "insertMacroVariable";
             this.insertMacroVariable.Size = new System.Drawing.Size(67, 25);
@@ -4195,9 +4192,9 @@ namespace Assistant
             this.insertMacroVariable.Text = "Insert as...";
             this.insertMacroVariable.UseVisualStyleBackColor = true;
             this.insertMacroVariable.Click += new System.EventHandler(this.insertMacroVariable_Click);
-            // 
+            //
             // removeMacroVariable
-            // 
+            //
             this.removeMacroVariable.Location = new System.Drawing.Point(6, 115);
             this.removeMacroVariable.Name = "removeMacroVariable";
             this.removeMacroVariable.Size = new System.Drawing.Size(67, 25);
@@ -4205,9 +4202,9 @@ namespace Assistant
             this.removeMacroVariable.Text = "Remove";
             this.removeMacroVariable.UseVisualStyleBackColor = true;
             this.removeMacroVariable.Click += new System.EventHandler(this.removeMacroVariable_Click);
-            // 
+            //
             // addMacroVariable
-            // 
+            //
             this.addMacroVariable.Location = new System.Drawing.Point(6, 53);
             this.addMacroVariable.Name = "addMacroVariable";
             this.addMacroVariable.Size = new System.Drawing.Size(67, 25);
@@ -4215,18 +4212,18 @@ namespace Assistant
             this.addMacroVariable.Text = "Add";
             this.addMacroVariable.UseVisualStyleBackColor = true;
             this.addMacroVariable.Click += new System.EventHandler(this.addMacroVariable_Click);
-            // 
+            //
             // macroVariables
-            // 
+            //
             this.macroVariables.FormattingEnabled = true;
             this.macroVariables.ItemHeight = 15;
             this.macroVariables.Location = new System.Drawing.Point(79, 53);
             this.macroVariables.Name = "macroVariables";
             this.macroVariables.Size = new System.Drawing.Size(153, 199);
             this.macroVariables.TabIndex = 1;
-            // 
+            //
             // scriptsTab
-            // 
+            //
             this.scriptsTab.BackColor = System.Drawing.SystemColors.Control;
             this.scriptsTab.Controls.Add(this.subTabScripts);
             this.scriptsTab.Location = new System.Drawing.Point(4, 44);
@@ -4234,9 +4231,9 @@ namespace Assistant
             this.scriptsTab.Size = new System.Drawing.Size(519, 322);
             this.scriptsTab.TabIndex = 13;
             this.scriptsTab.Text = "Scripts";
-            // 
+            //
             // subTabScripts
-            // 
+            //
             this.subTabScripts.Controls.Add(this.subScripts);
             this.subTabScripts.Controls.Add(this.tabPage3);
             this.subTabScripts.Location = new System.Drawing.Point(6, 3);
@@ -4244,9 +4241,9 @@ namespace Assistant
             this.subTabScripts.SelectedIndex = 0;
             this.subTabScripts.Size = new System.Drawing.Size(506, 313);
             this.subTabScripts.TabIndex = 14;
-            // 
+            //
             // subScripts
-            // 
+            //
             this.subScripts.BackColor = System.Drawing.SystemColors.Control;
             this.subScripts.Controls.Add(this.scriptGuide);
             this.subScripts.Controls.Add(this.scriptFilter);
@@ -4265,9 +4262,9 @@ namespace Assistant
             this.subScripts.Size = new System.Drawing.Size(498, 285);
             this.subScripts.TabIndex = 0;
             this.subScripts.Text = "Scripts";
-            // 
+            //
             // scriptGuide
-            // 
+            //
             this.scriptGuide.Location = new System.Drawing.Point(432, 253);
             this.scriptGuide.Name = "scriptGuide";
             this.scriptGuide.Size = new System.Drawing.Size(60, 26);
@@ -4275,18 +4272,18 @@ namespace Assistant
             this.scriptGuide.Text = "Help";
             this.scriptGuide.UseVisualStyleBackColor = true;
             this.scriptGuide.Click += new System.EventHandler(this.scriptGuide_Click);
-            // 
+            //
             // scriptFilter
-            // 
+            //
             this.scriptFilter.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scriptFilter.Location = new System.Drawing.Point(6, 7);
             this.scriptFilter.Name = "scriptFilter";
             this.scriptFilter.Size = new System.Drawing.Size(114, 25);
             this.scriptFilter.TabIndex = 25;
             this.scriptFilter.TextChanged += new System.EventHandler(this.scriptFilter_TextChanged);
-            // 
+            //
             // renameScript
-            // 
+            //
             this.renameScript.Location = new System.Drawing.Point(432, 189);
             this.renameScript.Name = "renameScript";
             this.renameScript.Size = new System.Drawing.Size(60, 26);
@@ -4294,9 +4291,9 @@ namespace Assistant
             this.renameScript.Text = "Rename";
             this.renameScript.UseVisualStyleBackColor = true;
             this.renameScript.Click += new System.EventHandler(this.renameScript_Click);
-            // 
+            //
             // saveScript
-            // 
+            //
             this.saveScript.Location = new System.Drawing.Point(432, 157);
             this.saveScript.Name = "saveScript";
             this.saveScript.Size = new System.Drawing.Size(60, 26);
@@ -4304,9 +4301,9 @@ namespace Assistant
             this.saveScript.Text = "Save";
             this.saveScript.UseVisualStyleBackColor = true;
             this.saveScript.Click += new System.EventHandler(this.saveScript_Click);
-            // 
+            //
             // deleteScript
-            // 
+            //
             this.deleteScript.Location = new System.Drawing.Point(432, 221);
             this.deleteScript.Name = "deleteScript";
             this.deleteScript.Size = new System.Drawing.Size(60, 26);
@@ -4314,9 +4311,9 @@ namespace Assistant
             this.deleteScript.Text = "Delete";
             this.deleteScript.UseVisualStyleBackColor = true;
             this.deleteScript.Click += new System.EventHandler(this.deleteScript_Click);
-            // 
+            //
             // scriptEditor
-            // 
+            //
             this.scriptEditor.AutoCompleteBracketsList = new char[] {
         '(',
         ')',
@@ -4355,9 +4352,9 @@ namespace Assistant
             this.scriptEditor.Zoom = 100;
             this.scriptEditor.LostFocus += new System.EventHandler(this.scriptEditor_LostFocus);
             this.scriptEditor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scriptEditor_MouseDown);
-            // 
+            //
             // scriptList
-            // 
+            //
             this.scriptList.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.scriptList.FormattingEnabled = true;
             this.scriptList.ItemHeight = 17;
@@ -4367,9 +4364,9 @@ namespace Assistant
             this.scriptList.TabIndex = 19;
             this.scriptList.SelectedIndexChanged += new System.EventHandler(this.scriptList_SelectedIndexChanged);
             this.scriptList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.scriptList_MouseDown);
-            // 
+            //
             // newScript
-            // 
+            //
             this.newScript.Location = new System.Drawing.Point(432, 125);
             this.newScript.Name = "newScript";
             this.newScript.Size = new System.Drawing.Size(60, 26);
@@ -4377,9 +4374,9 @@ namespace Assistant
             this.newScript.Text = "New";
             this.newScript.UseVisualStyleBackColor = true;
             this.newScript.Click += new System.EventHandler(this.newScript_Click);
-            // 
+            //
             // setScriptHotkey
-            // 
+            //
             this.setScriptHotkey.Location = new System.Drawing.Point(432, 83);
             this.setScriptHotkey.Name = "setScriptHotkey";
             this.setScriptHotkey.Size = new System.Drawing.Size(60, 32);
@@ -4387,9 +4384,9 @@ namespace Assistant
             this.setScriptHotkey.Text = "Set HK";
             this.setScriptHotkey.UseVisualStyleBackColor = true;
             this.setScriptHotkey.Click += new System.EventHandler(this.setScriptHotkey_Click);
-            // 
+            //
             // recordScript
-            // 
+            //
             this.recordScript.Location = new System.Drawing.Point(432, 45);
             this.recordScript.Name = "recordScript";
             this.recordScript.Size = new System.Drawing.Size(60, 32);
@@ -4397,9 +4394,9 @@ namespace Assistant
             this.recordScript.Text = "Record";
             this.recordScript.UseVisualStyleBackColor = true;
             this.recordScript.Click += new System.EventHandler(this.recordScript_Click);
-            // 
+            //
             // playScript
-            // 
+            //
             this.playScript.Location = new System.Drawing.Point(432, 7);
             this.playScript.Name = "playScript";
             this.playScript.Size = new System.Drawing.Size(60, 32);
@@ -4407,9 +4404,9 @@ namespace Assistant
             this.playScript.Text = "Play";
             this.playScript.UseVisualStyleBackColor = true;
             this.playScript.Click += new System.EventHandler(this.playScript_Click);
-            // 
+            //
             // tabPage3
-            // 
+            //
             this.tabPage3.BackColor = System.Drawing.SystemColors.Control;
             this.tabPage3.Controls.Add(this.scriptDisablePlayFinish);
             this.tabPage3.Controls.Add(this.scriptFindTypeRange);
@@ -4424,9 +4421,9 @@ namespace Assistant
             this.tabPage3.Size = new System.Drawing.Size(498, 287);
             this.tabPage3.TabIndex = 1;
             this.tabPage3.Text = "Options";
-            // 
+            //
             // scriptDisablePlayFinish
-            // 
+            //
             this.scriptDisablePlayFinish.AutoSize = true;
             this.scriptDisablePlayFinish.Location = new System.Drawing.Point(252, 178);
             this.scriptDisablePlayFinish.Name = "scriptDisablePlayFinish";
@@ -4435,9 +4432,9 @@ namespace Assistant
             this.scriptDisablePlayFinish.Text = "Disable Playing/Finished Message";
             this.scriptDisablePlayFinish.UseVisualStyleBackColor = true;
             this.scriptDisablePlayFinish.CheckedChanged += new System.EventHandler(this.disableScriptPlayFinish_CheckedChanged);
-            // 
+            //
             // scriptFindTypeRange
-            // 
+            //
             this.scriptFindTypeRange.AutoSize = true;
             this.scriptFindTypeRange.Location = new System.Drawing.Point(252, 144);
             this.scriptFindTypeRange.Name = "scriptFindTypeRange";
@@ -4446,9 +4443,9 @@ namespace Assistant
             this.scriptFindTypeRange.Text = "Range check on \'findtype\'";
             this.scriptFindTypeRange.UseVisualStyleBackColor = true;
             this.scriptFindTypeRange.CheckedChanged += new System.EventHandler(this.scriptFindTypeRange_CheckedChanged);
-            // 
+            //
             // scriptDClickTypeRange
-            // 
+            //
             this.scriptDClickTypeRange.AutoSize = true;
             this.scriptDClickTypeRange.Location = new System.Drawing.Point(252, 119);
             this.scriptDClickTypeRange.Name = "scriptDClickTypeRange";
@@ -4457,9 +4454,9 @@ namespace Assistant
             this.scriptDClickTypeRange.Text = "Range check on \'dclicktype\'";
             this.scriptDClickTypeRange.UseVisualStyleBackColor = true;
             this.scriptDClickTypeRange.CheckedChanged += new System.EventHandler(this.scriptDClickTypeRange_CheckedChanged);
-            // 
+            //
             // scriptTargetTypeRange
-            // 
+            //
             this.scriptTargetTypeRange.AutoSize = true;
             this.scriptTargetTypeRange.Location = new System.Drawing.Point(252, 94);
             this.scriptTargetTypeRange.Name = "scriptTargetTypeRange";
@@ -4468,9 +4465,9 @@ namespace Assistant
             this.scriptTargetTypeRange.Text = "Range check on \'targettype\'";
             this.scriptTargetTypeRange.UseVisualStyleBackColor = true;
             this.scriptTargetTypeRange.CheckedChanged += new System.EventHandler(this.scriptTargetTypeRange_CheckedChanged);
-            // 
+            //
             // autoSaveScriptPlay
-            // 
+            //
             this.autoSaveScriptPlay.AutoSize = true;
             this.autoSaveScriptPlay.Location = new System.Drawing.Point(252, 53);
             this.autoSaveScriptPlay.Name = "autoSaveScriptPlay";
@@ -4479,9 +4476,9 @@ namespace Assistant
             this.autoSaveScriptPlay.Text = "Auto-save when you click \'Play\'";
             this.autoSaveScriptPlay.UseVisualStyleBackColor = true;
             this.autoSaveScriptPlay.CheckedChanged += new System.EventHandler(this.autoSaveScriptPlay_CheckedChanged);
-            // 
+            //
             // autoSaveScript
-            // 
+            //
             this.autoSaveScript.AutoSize = true;
             this.autoSaveScript.Location = new System.Drawing.Point(252, 28);
             this.autoSaveScript.Name = "autoSaveScript";
@@ -4490,9 +4487,9 @@ namespace Assistant
             this.autoSaveScript.Text = "Auto-save when script editor loses focus";
             this.autoSaveScript.UseVisualStyleBackColor = true;
             this.autoSaveScript.CheckedChanged += new System.EventHandler(this.autoSaveScript_CheckedChanged);
-            // 
+            //
             // scriptVariablesBox
-            // 
+            //
             this.scriptVariablesBox.Controls.Add(this.changeScriptVariable);
             this.scriptVariablesBox.Controls.Add(this.removeScriptVariable);
             this.scriptVariablesBox.Controls.Add(this.addScriptVariable);
@@ -4503,9 +4500,9 @@ namespace Assistant
             this.scriptVariablesBox.TabIndex = 7;
             this.scriptVariablesBox.TabStop = false;
             this.scriptVariablesBox.Text = "Script Variables:";
-            // 
+            //
             // changeScriptVariable
-            // 
+            //
             this.changeScriptVariable.Location = new System.Drawing.Point(6, 53);
             this.changeScriptVariable.Name = "changeScriptVariable";
             this.changeScriptVariable.Size = new System.Drawing.Size(67, 25);
@@ -4513,9 +4510,9 @@ namespace Assistant
             this.changeScriptVariable.Text = "Retarget";
             this.changeScriptVariable.UseVisualStyleBackColor = true;
             this.changeScriptVariable.Click += new System.EventHandler(this.changeScriptVariable_Click);
-            // 
+            //
             // removeScriptVariable
-            // 
+            //
             this.removeScriptVariable.Location = new System.Drawing.Point(6, 84);
             this.removeScriptVariable.Name = "removeScriptVariable";
             this.removeScriptVariable.Size = new System.Drawing.Size(67, 25);
@@ -4523,9 +4520,9 @@ namespace Assistant
             this.removeScriptVariable.Text = "Remove";
             this.removeScriptVariable.UseVisualStyleBackColor = true;
             this.removeScriptVariable.Click += new System.EventHandler(this.removeScriptVariable_Click);
-            // 
+            //
             // addScriptVariable
-            // 
+            //
             this.addScriptVariable.Location = new System.Drawing.Point(6, 22);
             this.addScriptVariable.Name = "addScriptVariable";
             this.addScriptVariable.Size = new System.Drawing.Size(67, 25);
@@ -4533,18 +4530,18 @@ namespace Assistant
             this.addScriptVariable.Text = "Add";
             this.addScriptVariable.UseVisualStyleBackColor = true;
             this.addScriptVariable.Click += new System.EventHandler(this.addScriptVariable_Click);
-            // 
+            //
             // scriptVariables
-            // 
+            //
             this.scriptVariables.FormattingEnabled = true;
             this.scriptVariables.ItemHeight = 15;
             this.scriptVariables.Location = new System.Drawing.Point(79, 22);
             this.scriptVariables.Name = "scriptVariables";
             this.scriptVariables.Size = new System.Drawing.Size(153, 229);
             this.scriptVariables.TabIndex = 1;
-            // 
+            //
             // friendsTab
-            // 
+            //
             this.friendsTab.BackColor = System.Drawing.SystemColors.Control;
             this.friendsTab.Controls.Add(this.showPartyFriendOverhead);
             this.friendsTab.Controls.Add(this.highlightFriend);
@@ -4557,18 +4554,18 @@ namespace Assistant
             this.friendsTab.Size = new System.Drawing.Size(519, 322);
             this.friendsTab.TabIndex = 14;
             this.friendsTab.Text = "Friends";
-            // 
+            //
             // showPartyFriendOverhead
-            // 
+            //
             this.showPartyFriendOverhead.Location = new System.Drawing.Point(283, 40);
             this.showPartyFriendOverhead.Name = "showPartyFriendOverhead";
             this.showPartyFriendOverhead.Size = new System.Drawing.Size(217, 20);
             this.showPartyFriendOverhead.TabIndex = 144;
             this.showPartyFriendOverhead.Text = "Show [Party-Friend] overhead";
             this.showPartyFriendOverhead.CheckedChanged += new System.EventHandler(this.showPartyFriendOverhead_CheckedChanged);
-            // 
+            //
             // highlightFriend
-            // 
+            //
             this.highlightFriend.Location = new System.Drawing.Point(270, 117);
             this.highlightFriend.Name = "highlightFriend";
             this.highlightFriend.Size = new System.Drawing.Size(184, 23);
@@ -4576,18 +4573,18 @@ namespace Assistant
             this.highlightFriend.Text = "Next/Prev highlights \'Friends\'";
             this.highlightFriend.UseVisualStyleBackColor = true;
             this.highlightFriend.CheckedChanged += new System.EventHandler(this.highlightFriend_CheckedChanged);
-            // 
+            //
             // autoAcceptParty
-            // 
+            //
             this.autoAcceptParty.Location = new System.Drawing.Point(270, 91);
             this.autoAcceptParty.Name = "autoAcceptParty";
             this.autoAcceptParty.Size = new System.Drawing.Size(230, 20);
             this.autoAcceptParty.TabIndex = 138;
             this.autoAcceptParty.Text = "Auto-accept party invites from friends";
             this.autoAcceptParty.CheckedChanged += new System.EventHandler(this.autoAcceptParty_CheckedChanged);
-            // 
+            //
             // nextPrevIgnoresFriends
-            // 
+            //
             this.nextPrevIgnoresFriends.AutoSize = true;
             this.nextPrevIgnoresFriends.Location = new System.Drawing.Point(270, 66);
             this.nextPrevIgnoresFriends.Name = "nextPrevIgnoresFriends";
@@ -4596,18 +4593,18 @@ namespace Assistant
             this.nextPrevIgnoresFriends.Text = "Next/Prev Target ignores \'Friends\'";
             this.nextPrevIgnoresFriends.UseVisualStyleBackColor = true;
             this.nextPrevIgnoresFriends.CheckedChanged += new System.EventHandler(this.nextPrevIgnoresFriends_CheckedChanged);
-            // 
+            //
             // autoFriend
-            // 
+            //
             this.autoFriend.Location = new System.Drawing.Point(270, 14);
             this.autoFriend.Name = "autoFriend";
             this.autoFriend.Size = new System.Drawing.Size(217, 20);
             this.autoFriend.TabIndex = 136;
             this.autoFriend.Text = "Treat party members as \'Friends\'";
             this.autoFriend.CheckedChanged += new System.EventHandler(this.autoFriend_CheckedChanged);
-            // 
+            //
             // friendsGroupBox
-            // 
+            //
             this.friendsGroupBox.Controls.Add(this.showFriendOverhead);
             this.friendsGroupBox.Controls.Add(this.setFriendsFormatHue);
             this.friendsGroupBox.Controls.Add(this.friendOverheadFormat);
@@ -4626,9 +4623,9 @@ namespace Assistant
             this.friendsGroupBox.TabIndex = 135;
             this.friendsGroupBox.TabStop = false;
             this.friendsGroupBox.Text = "Friends Groups && Lists";
-            // 
+            //
             // showFriendOverhead
-            // 
+            //
             this.showFriendOverhead.Location = new System.Drawing.Point(6, 52);
             this.showFriendOverhead.Name = "showFriendOverhead";
             this.showFriendOverhead.Size = new System.Drawing.Size(184, 23);
@@ -4636,9 +4633,9 @@ namespace Assistant
             this.showFriendOverhead.Text = "Show overhead tag";
             this.showFriendOverhead.UseVisualStyleBackColor = true;
             this.showFriendOverhead.CheckedChanged += new System.EventHandler(this.showFriendOverhead_CheckedChanged);
-            // 
+            //
             // setFriendsFormatHue
-            // 
+            //
             this.setFriendsFormatHue.Location = new System.Drawing.Point(163, 78);
             this.setFriendsFormatHue.Name = "setFriendsFormatHue";
             this.setFriendsFormatHue.Size = new System.Drawing.Size(59, 23);
@@ -4646,9 +4643,9 @@ namespace Assistant
             this.setFriendsFormatHue.Text = "Set Hue";
             this.setFriendsFormatHue.UseVisualStyleBackColor = true;
             this.setFriendsFormatHue.Click += new System.EventHandler(this.setFriendsFormatHue_Click);
-            // 
+            //
             // friendOverheadFormat
-            // 
+            //
             this.friendOverheadFormat.Location = new System.Drawing.Point(55, 78);
             this.friendOverheadFormat.Name = "friendOverheadFormat";
             this.friendOverheadFormat.Size = new System.Drawing.Size(102, 23);
@@ -4656,18 +4653,18 @@ namespace Assistant
             this.friendOverheadFormat.Text = "[Friend]";
             this.friendOverheadFormat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.friendOverheadFormat.TextChanged += new System.EventHandler(this.friendOverheadFormat_TextChanged);
-            // 
+            //
             // friendFormat
-            // 
+            //
             this.friendFormat.Location = new System.Drawing.Point(6, 78);
             this.friendFormat.Name = "friendFormat";
             this.friendFormat.Size = new System.Drawing.Size(151, 23);
             this.friendFormat.TabIndex = 144;
             this.friendFormat.Text = "Format:";
             this.friendFormat.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // friendsGroupRemove
-            // 
+            //
             this.friendsGroupRemove.Location = new System.Drawing.Point(157, 21);
             this.friendsGroupRemove.Name = "friendsGroupRemove";
             this.friendsGroupRemove.Size = new System.Drawing.Size(21, 25);
@@ -4675,9 +4672,9 @@ namespace Assistant
             this.friendsGroupRemove.Text = "-";
             this.friendsGroupRemove.UseVisualStyleBackColor = true;
             this.friendsGroupRemove.Click += new System.EventHandler(this.friendsGroupRemove_Click);
-            // 
+            //
             // friendsGroupAdd
-            // 
+            //
             this.friendsGroupAdd.Location = new System.Drawing.Point(130, 21);
             this.friendsGroupAdd.Name = "friendsGroupAdd";
             this.friendsGroupAdd.Size = new System.Drawing.Size(21, 25);
@@ -4685,9 +4682,9 @@ namespace Assistant
             this.friendsGroupAdd.Text = "+";
             this.friendsGroupAdd.UseVisualStyleBackColor = true;
             this.friendsGroupAdd.Click += new System.EventHandler(this.friendsGroupAdd_Click);
-            // 
+            //
             // friendClearList
-            // 
+            //
             this.friendClearList.Location = new System.Drawing.Point(174, 274);
             this.friendClearList.Name = "friendClearList";
             this.friendClearList.Size = new System.Drawing.Size(79, 33);
@@ -4695,9 +4692,9 @@ namespace Assistant
             this.friendClearList.Text = "Clear List";
             this.friendClearList.UseVisualStyleBackColor = true;
             this.friendClearList.Click += new System.EventHandler(this.friendClearList_Click);
-            // 
+            //
             // friendRemoveSelected
-            // 
+            //
             this.friendRemoveSelected.Location = new System.Drawing.Point(94, 274);
             this.friendRemoveSelected.Name = "friendRemoveSelected";
             this.friendRemoveSelected.Size = new System.Drawing.Size(74, 33);
@@ -4705,9 +4702,9 @@ namespace Assistant
             this.friendRemoveSelected.Text = "Remove";
             this.friendRemoveSelected.UseVisualStyleBackColor = true;
             this.friendRemoveSelected.Click += new System.EventHandler(this.friendRemoveSelected_Click);
-            // 
+            //
             // friendAddTarget
-            // 
+            //
             this.friendAddTarget.Location = new System.Drawing.Point(6, 274);
             this.friendAddTarget.Name = "friendAddTarget";
             this.friendAddTarget.Size = new System.Drawing.Size(82, 33);
@@ -4715,9 +4712,9 @@ namespace Assistant
             this.friendAddTarget.Text = "Add (Target)";
             this.friendAddTarget.UseVisualStyleBackColor = true;
             this.friendAddTarget.Click += new System.EventHandler(this.FriendAddTarget_Click);
-            // 
+            //
             // friendsList
-            // 
+            //
             this.friendsList.FormattingEnabled = true;
             this.friendsList.ItemHeight = 15;
             this.friendsList.Location = new System.Drawing.Point(5, 114);
@@ -4726,9 +4723,9 @@ namespace Assistant
             this.friendsList.TabIndex = 4;
             this.friendsList.KeyDown += new System.Windows.Forms.KeyEventHandler(this.friendsList_KeyDown);
             this.friendsList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.friendsList_MouseDown);
-            // 
+            //
             // friendsGroup
-            // 
+            //
             this.friendsGroup.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.friendsGroup.FormattingEnabled = true;
             this.friendsGroup.Location = new System.Drawing.Point(6, 22);
@@ -4736,9 +4733,9 @@ namespace Assistant
             this.friendsGroup.Size = new System.Drawing.Size(118, 23);
             this.friendsGroup.TabIndex = 3;
             this.friendsGroup.SelectedIndexChanged += new System.EventHandler(this.friendsGroup_SelectedIndexChanged);
-            // 
+            //
             // friendsListEnabled
-            // 
+            //
             this.friendsListEnabled.Location = new System.Drawing.Point(184, 23);
             this.friendsListEnabled.Name = "friendsListEnabled";
             this.friendsListEnabled.Size = new System.Drawing.Size(69, 20);
@@ -4746,9 +4743,9 @@ namespace Assistant
             this.friendsListEnabled.Text = "Enabled";
             this.friendsListEnabled.UseVisualStyleBackColor = true;
             this.friendsListEnabled.CheckedChanged += new System.EventHandler(this.friendsListEnabled_CheckedChanged);
-            // 
+            //
             // screenshotTab
-            // 
+            //
             this.screenshotTab.Controls.Add(this.captureOwnDeathDelay);
             this.screenshotTab.Controls.Add(this.lblOwnDeathMs);
             this.screenshotTab.Controls.Add(this.captureOwnDeath);
@@ -4770,9 +4767,9 @@ namespace Assistant
             this.screenshotTab.Size = new System.Drawing.Size(519, 322);
             this.screenshotTab.TabIndex = 8;
             this.screenshotTab.Text = "Screen Shots";
-            // 
+            //
             // captureOwnDeathDelay
-            // 
+            //
             this.captureOwnDeathDelay.Location = new System.Drawing.Point(419, 263);
             this.captureOwnDeathDelay.Name = "captureOwnDeathDelay";
             this.captureOwnDeathDelay.Size = new System.Drawing.Size(32, 23);
@@ -4780,26 +4777,26 @@ namespace Assistant
             this.captureOwnDeathDelay.Text = "0.5";
             this.captureOwnDeathDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.captureOwnDeathDelay.TextChanged += new System.EventHandler(this.CaptureOwnDeathDelay_TextChanged);
-            // 
+            //
             // lblOwnDeathMs
-            // 
+            //
             this.lblOwnDeathMs.Location = new System.Drawing.Point(453, 267);
             this.lblOwnDeathMs.Name = "lblOwnDeathMs";
             this.lblOwnDeathMs.Size = new System.Drawing.Size(26, 18);
             this.lblOwnDeathMs.TabIndex = 60;
             this.lblOwnDeathMs.Text = "s";
-            // 
+            //
             // captureOwnDeath
-            // 
+            //
             this.captureOwnDeath.Location = new System.Drawing.Point(235, 266);
             this.captureOwnDeath.Name = "captureOwnDeath";
             this.captureOwnDeath.Size = new System.Drawing.Size(158, 20);
             this.captureOwnDeath.TabIndex = 59;
             this.captureOwnDeath.Text = "Capture your own death";
             this.captureOwnDeath.CheckedChanged += new System.EventHandler(this.CaptureOwnDeath_CheckedChanged);
-            // 
+            //
             // captureOthersDeathDelay
-            // 
+            //
             this.captureOthersDeathDelay.Location = new System.Drawing.Point(419, 239);
             this.captureOthersDeathDelay.Name = "captureOthersDeathDelay";
             this.captureOthersDeathDelay.Size = new System.Drawing.Size(32, 23);
@@ -4807,17 +4804,17 @@ namespace Assistant
             this.captureOthersDeathDelay.Text = "0.5";
             this.captureOthersDeathDelay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.captureOthersDeathDelay.TextChanged += new System.EventHandler(this.CaptureOthersDeathDelay_TextChanged);
-            // 
+            //
             // lblCaptureOthersDeathMs
-            // 
+            //
             this.lblCaptureOthersDeathMs.Location = new System.Drawing.Point(453, 242);
             this.lblCaptureOthersDeathMs.Name = "lblCaptureOthersDeathMs";
             this.lblCaptureOthersDeathMs.Size = new System.Drawing.Size(26, 18);
             this.lblCaptureOthersDeathMs.TabIndex = 57;
             this.lblCaptureOthersDeathMs.Text = "s";
-            // 
+            //
             // imgFmt
-            // 
+            //
             this.imgFmt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.imgFmt.Items.AddRange(new object[] {
             "jpg",
@@ -4833,71 +4830,71 @@ namespace Assistant
             this.imgFmt.Size = new System.Drawing.Size(98, 23);
             this.imgFmt.TabIndex = 11;
             this.imgFmt.SelectedIndexChanged += new System.EventHandler(this.imgFmt_SelectedIndexChanged);
-            // 
+            //
             // label12
-            // 
+            //
             this.label12.Location = new System.Drawing.Point(6, 237);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(92, 20);
             this.label12.TabIndex = 10;
             this.label12.Text = "Image Format:";
             this.label12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // capNow
-            // 
+            //
             this.capNow.Location = new System.Drawing.Point(371, 9);
             this.capNow.Name = "capNow";
             this.capNow.Size = new System.Drawing.Size(141, 22);
             this.capNow.TabIndex = 8;
             this.capNow.Text = "Take Screen Shot Now";
             this.capNow.Click += new System.EventHandler(this.capNow_Click);
-            // 
+            //
             // screenPath
-            // 
+            //
             this.screenPath.Location = new System.Drawing.Point(8, 8);
             this.screenPath.Name = "screenPath";
             this.screenPath.Size = new System.Drawing.Size(316, 23);
             this.screenPath.TabIndex = 7;
             this.screenPath.TextChanged += new System.EventHandler(this.screenPath_TextChanged);
-            // 
+            //
             // radioUO
-            // 
+            //
             this.radioUO.Location = new System.Drawing.Point(13, 260);
             this.radioUO.Name = "radioUO";
             this.radioUO.Size = new System.Drawing.Size(75, 26);
             this.radioUO.TabIndex = 6;
             this.radioUO.Text = "UO Only";
             this.radioUO.CheckedChanged += new System.EventHandler(this.radioUO_CheckedChanged);
-            // 
+            //
             // radioFull
-            // 
+            //
             this.radioFull.Location = new System.Drawing.Point(103, 260);
             this.radioFull.Name = "radioFull";
             this.radioFull.Size = new System.Drawing.Size(88, 26);
             this.radioFull.TabIndex = 5;
             this.radioFull.Text = "Full Screen";
             this.radioFull.CheckedChanged += new System.EventHandler(this.radioFull_CheckedChanged);
-            // 
+            //
             // captureOthersDeath
-            // 
+            //
             this.captureOthersDeath.Location = new System.Drawing.Point(235, 240);
             this.captureOthersDeath.Name = "captureOthersDeath";
             this.captureOthersDeath.Size = new System.Drawing.Size(216, 20);
             this.captureOthersDeath.TabIndex = 4;
             this.captureOthersDeath.Text = "Capture death of other players";
             this.captureOthersDeath.CheckedChanged += new System.EventHandler(this.CaptureOthersDeath_CheckedChanged);
-            // 
+            //
             // setScnPath
-            // 
+            //
             this.setScnPath.Location = new System.Drawing.Point(330, 9);
             this.setScnPath.Name = "setScnPath";
             this.setScnPath.Size = new System.Drawing.Size(35, 22);
             this.setScnPath.TabIndex = 3;
             this.setScnPath.Text = "...";
             this.setScnPath.Click += new System.EventHandler(this.setScnPath_Click);
-            // 
+            //
             // screensList
-            // 
+            //
             this.screensList.IntegralHeight = false;
             this.screensList.ItemHeight = 15;
             this.screensList.Location = new System.Drawing.Point(8, 36);
@@ -4907,9 +4904,9 @@ namespace Assistant
             this.screensList.TabIndex = 1;
             this.screensList.SelectedIndexChanged += new System.EventHandler(this.screensList_SelectedIndexChanged);
             this.screensList.MouseDown += new System.Windows.Forms.MouseEventHandler(this.screensList_MouseDown);
-            // 
+            //
             // screenPrev
-            // 
+            //
             this.screenPrev.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.screenPrev.Location = new System.Drawing.Point(266, 36);
             this.screenPrev.Name = "screenPrev";
@@ -4918,18 +4915,18 @@ namespace Assistant
             this.screenPrev.TabIndex = 0;
             this.screenPrev.TabStop = false;
             this.screenPrev.Click += new System.EventHandler(this.screenPrev_Click);
-            // 
+            //
             // dispTime
-            // 
+            //
             this.dispTime.Location = new System.Drawing.Point(13, 289);
             this.dispTime.Name = "dispTime";
             this.dispTime.Size = new System.Drawing.Size(206, 20);
             this.dispTime.TabIndex = 9;
             this.dispTime.Text = "Include Timestamp on images";
             this.dispTime.CheckedChanged += new System.EventHandler(this.dispTime_CheckedChanged);
-            // 
+            //
             // advancedTab
-            // 
+            //
             this.advancedTab.BackColor = System.Drawing.SystemColors.Control;
             this.advancedTab.Controls.Add(this.groupBox16);
             this.advancedTab.Controls.Add(this.enableUOAAPI);
@@ -4946,9 +4943,9 @@ namespace Assistant
             this.advancedTab.Size = new System.Drawing.Size(519, 322);
             this.advancedTab.TabIndex = 12;
             this.advancedTab.Text = "Advanced";
-            // 
+            //
             // groupBox16
-            // 
+            //
             this.groupBox16.Controls.Add(this.lastBackup);
             this.groupBox16.Controls.Add(this.openBackupFolder);
             this.groupBox16.Controls.Add(this.setBackupFolder);
@@ -4959,18 +4956,18 @@ namespace Assistant
             this.groupBox16.TabIndex = 80;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "Backup";
-            // 
+            //
             // lastBackup
-            // 
+            //
             this.lastBackup.Location = new System.Drawing.Point(100, 63);
             this.lastBackup.Name = "lastBackup";
             this.lastBackup.Size = new System.Drawing.Size(119, 44);
             this.lastBackup.TabIndex = 82;
             this.lastBackup.Text = "Last Backup: 01/01/2019 5:54PM";
             this.lastBackup.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // openBackupFolder
-            // 
+            //
             this.openBackupFolder.Location = new System.Drawing.Point(6, 70);
             this.openBackupFolder.Name = "openBackupFolder";
             this.openBackupFolder.Size = new System.Drawing.Size(88, 30);
@@ -4978,9 +4975,9 @@ namespace Assistant
             this.openBackupFolder.Text = "Open Folder";
             this.openBackupFolder.UseVisualStyleBackColor = true;
             this.openBackupFolder.Click += new System.EventHandler(this.openBackupFolder_Click);
-            // 
+            //
             // setBackupFolder
-            // 
+            //
             this.setBackupFolder.Location = new System.Drawing.Point(134, 22);
             this.setBackupFolder.Name = "setBackupFolder";
             this.setBackupFolder.Size = new System.Drawing.Size(85, 30);
@@ -4988,9 +4985,9 @@ namespace Assistant
             this.setBackupFolder.Text = "Set Folder";
             this.setBackupFolder.UseVisualStyleBackColor = true;
             this.setBackupFolder.Click += new System.EventHandler(this.setBackupFolder_Click);
-            // 
+            //
             // createBackup
-            // 
+            //
             this.createBackup.Location = new System.Drawing.Point(6, 22);
             this.createBackup.Name = "createBackup";
             this.createBackup.Size = new System.Drawing.Size(122, 30);
@@ -4998,9 +4995,9 @@ namespace Assistant
             this.createBackup.Text = "Create Backup";
             this.createBackup.UseVisualStyleBackColor = true;
             this.createBackup.Click += new System.EventHandler(this.createBackup_Click);
-            // 
+            //
             // enableUOAAPI
-            // 
+            //
             this.enableUOAAPI.Checked = true;
             this.enableUOAAPI.CheckState = System.Windows.Forms.CheckState.Checked;
             this.enableUOAAPI.Location = new System.Drawing.Point(241, 102);
@@ -5009,9 +5006,9 @@ namespace Assistant
             this.enableUOAAPI.TabIndex = 75;
             this.enableUOAAPI.Text = "Enable UOA API";
             this.enableUOAAPI.CheckedChanged += new System.EventHandler(this.enableUOAAPI_CheckedChanged);
-            // 
+            //
             // disableSmartCPU
-            // 
+            //
             this.disableSmartCPU.Location = new System.Drawing.Point(392, 156);
             this.disableSmartCPU.Name = "disableSmartCPU";
             this.disableSmartCPU.Size = new System.Drawing.Size(119, 22);
@@ -5019,18 +5016,18 @@ namespace Assistant
             this.disableSmartCPU.Text = "Disable SmartCPU";
             this.disableSmartCPU.UseVisualStyleBackColor = true;
             this.disableSmartCPU.Click += new System.EventHandler(this.disableSmartCPU_Click);
-            // 
+            //
             // negotiate
-            // 
+            //
             this.negotiate.Location = new System.Drawing.Point(241, 76);
             this.negotiate.Name = "negotiate";
             this.negotiate.Size = new System.Drawing.Size(197, 20);
             this.negotiate.TabIndex = 72;
             this.negotiate.Text = "Negotiate features with server";
             this.negotiate.CheckedChanged += new System.EventHandler(this.negotiate_CheckedChanged);
-            // 
+            //
             // openRazorDataDir
-            // 
+            //
             this.openRazorDataDir.Location = new System.Drawing.Point(241, 8);
             this.openRazorDataDir.Name = "openRazorDataDir";
             this.openRazorDataDir.Size = new System.Drawing.Size(271, 33);
@@ -5038,9 +5035,9 @@ namespace Assistant
             this.openRazorDataDir.Text = "Open Data Directory";
             this.openRazorDataDir.UseVisualStyleBackColor = true;
             this.openRazorDataDir.Click += new System.EventHandler(this.openRazorDataDir_Click);
-            // 
+            //
             // msglvl
-            // 
+            //
             this.msglvl.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.msglvl.Items.AddRange(new object[] {
             "Show All",
@@ -5052,27 +5049,27 @@ namespace Assistant
             this.msglvl.Size = new System.Drawing.Size(168, 23);
             this.msglvl.TabIndex = 69;
             this.msglvl.SelectedIndexChanged += new System.EventHandler(this.msglvl_SelectedIndexChanged);
-            // 
+            //
             // label17
-            // 
+            //
             this.label17.Location = new System.Drawing.Point(238, 128);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(99, 18);
             this.label17.TabIndex = 68;
             this.label17.Text = "Razor messages:";
             this.label17.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            // 
+            //
             // logPackets
-            // 
+            //
             this.logPackets.Location = new System.Drawing.Point(241, 47);
             this.logPackets.Name = "logPackets";
             this.logPackets.Size = new System.Drawing.Size(146, 23);
             this.logPackets.TabIndex = 67;
             this.logPackets.Text = "Enable packet logging";
             this.logPackets.CheckedChanged += new System.EventHandler(this.logPackets_CheckedChanged);
-            // 
+            //
             // statusBox
-            // 
+            //
             this.statusBox.BackColor = System.Drawing.SystemColors.Control;
             this.statusBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.statusBox.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -5083,9 +5080,9 @@ namespace Assistant
             this.statusBox.ReadOnly = true;
             this.statusBox.Size = new System.Drawing.Size(225, 170);
             this.statusBox.TabIndex = 66;
-            // 
+            //
             // features
-            // 
+            //
             this.features.Cursor = System.Windows.Forms.Cursors.No;
             this.features.Location = new System.Drawing.Point(241, 184);
             this.features.Multiline = true;
@@ -5095,9 +5092,9 @@ namespace Assistant
             this.features.Size = new System.Drawing.Size(271, 132);
             this.features.TabIndex = 65;
             this.features.Visible = false;
-            // 
+            //
             // aboutTab
-            // 
+            //
             this.aboutTab.Controls.Add(this.linkGitHub);
             this.aboutTab.Controls.Add(this.lblCredits3);
             this.aboutTab.Controls.Add(this.linkHelp);
@@ -5114,9 +5111,9 @@ namespace Assistant
             this.aboutTab.Size = new System.Drawing.Size(519, 322);
             this.aboutTab.TabIndex = 9;
             this.aboutTab.Text = "About";
-            // 
+            //
             // linkGitHub
-            // 
+            //
             this.linkGitHub.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkGitHub.Location = new System.Drawing.Point(6, 163);
             this.linkGitHub.Name = "linkGitHub";
@@ -5126,9 +5123,9 @@ namespace Assistant
             this.linkGitHub.Text = "https://github.com/markdwags/Razor";
             this.linkGitHub.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkGitHub.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkGitHub_LinkClicked);
-            // 
+            //
             // lblCredits3
-            // 
+            //
             this.lblCredits3.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredits3.Location = new System.Drawing.Point(8, 259);
             this.lblCredits3.Name = "lblCredits3";
@@ -5136,9 +5133,9 @@ namespace Assistant
             this.lblCredits3.TabIndex = 24;
             this.lblCredits3.Text = "Cross-platform implementation by DarkLotus";
             this.lblCredits3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // linkHelp
-            // 
+            //
             this.linkHelp.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkHelp.Location = new System.Drawing.Point(434, 10);
             this.linkHelp.Name = "linkHelp";
@@ -5148,9 +5145,9 @@ namespace Assistant
             this.linkHelp.Text = "Need Help?";
             this.linkHelp.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkHelp.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkHelp_LinkClicked);
-            // 
+            //
             // lblCredits2
-            // 
+            //
             this.lblCredits2.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredits2.Location = new System.Drawing.Point(9, 239);
             this.lblCredits2.Name = "lblCredits2";
@@ -5158,9 +5155,9 @@ namespace Assistant
             this.lblCredits2.TabIndex = 22;
             this.lblCredits2.Text = "Major design changes including ClassicUO integration by Jaedan";
             this.lblCredits2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // label20
-            // 
+            //
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label20.Location = new System.Drawing.Point(93, 126);
@@ -5168,9 +5165,9 @@ namespace Assistant
             this.label20.Size = new System.Drawing.Size(343, 17);
             this.label20.TabIndex = 21;
             this.label20.Text = "For feedback, support and the latest releases please visit:\r\n";
-            // 
+            //
             // linkLabel1
-            // 
+            //
             this.linkLabel1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel1.Location = new System.Drawing.Point(6, 94);
             this.linkLabel1.Name = "linkLabel1";
@@ -5180,9 +5177,9 @@ namespace Assistant
             this.linkLabel1.Text = "http://www.uorenaissance.com";
             this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
+            //
             // lblCredits1
-            // 
+            //
             this.lblCredits1.Font = new System.Drawing.Font("Segoe UI Semibold", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCredits1.Location = new System.Drawing.Point(6, 219);
             this.lblCredits1.Name = "lblCredits1";
@@ -5190,9 +5187,9 @@ namespace Assistant
             this.lblCredits1.TabIndex = 19;
             this.lblCredits1.Text = "Razor was designed by Zippy, modified and maintained by Quick";
             this.lblCredits1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // aboutSubInfo
-            // 
+            //
             this.aboutSubInfo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutSubInfo.Location = new System.Drawing.Point(6, 75);
             this.aboutSubInfo.Name = "aboutSubInfo";
@@ -5200,9 +5197,9 @@ namespace Assistant
             this.aboutSubInfo.TabIndex = 17;
             this.aboutSubInfo.Text = "UO Renaissance Community Edition";
             this.aboutSubInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // linkMain
-            // 
+            //
             this.linkMain.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkMain.Location = new System.Drawing.Point(6, 143);
             this.linkMain.Name = "linkMain";
@@ -5212,9 +5209,9 @@ namespace Assistant
             this.linkMain.Text = "http://www.uor-razor.com";
             this.linkMain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linkMain.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel2_LinkClicked);
-            // 
+            //
             // label21
-            // 
+            //
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Segoe UI Semibold", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label21.Location = new System.Drawing.Point(52, 98);
@@ -5222,9 +5219,9 @@ namespace Assistant
             this.label21.Size = new System.Drawing.Size(0, 15);
             this.label21.TabIndex = 15;
             this.label21.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // aboutVer
-            // 
+            //
             this.aboutVer.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.aboutVer.Location = new System.Drawing.Point(6, 40);
             this.aboutVer.Name = "aboutVer";
@@ -5232,9 +5229,9 @@ namespace Assistant
             this.aboutVer.TabIndex = 14;
             this.aboutVer.Text = "Razor v{0}";
             this.aboutVer.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
+            //
             // MainForm
-            // 
+            //
             this.AutoScaleBaseSize = new System.Drawing.Size(6, 16);
             this.ClientSize = new System.Drawing.Size(530, 372);
             this.Controls.Add(this.tabs);

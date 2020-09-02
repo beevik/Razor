@@ -34,7 +34,7 @@ namespace Assistant
 {
     public partial class Engine
     {
-        public static unsafe void Install(PluginHeader* plugin)
+        public static unsafe void Install(ref PluginHeader plugin)
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
@@ -62,16 +62,14 @@ namespace Assistant
 
             Client.Init(false);
 
-            if (!(Client.Instance as ClassicUOClient).Install(plugin))
+            if (!(Client.Instance as ClassicUOClient).Install(ref plugin))
             {
                 Process.GetCurrentProcess().Kill();
                 return;
             }
 
             // load ultimasdk before or the Language.Load will throw the cliloc not found warning every time you run cuo
-            string clientPath =
-                ((OnGetUOFilePath) Marshal.GetDelegateForFunctionPointer(plugin->GetUOFilePath, typeof(OnGetUOFilePath))
-                )();
+            string clientPath = plugin.GetUOFilePath();
 
             // just replicating the static .ctor
             Ultima.Files.ReLoadDirectory();
@@ -184,31 +182,21 @@ namespace Assistant
 
         public override bool ServerEncrypted { get; set; }
 
-        public unsafe bool Install(PluginHeader* header)
+        public unsafe bool Install(ref PluginHeader header)
         {
-            _sendToClient =
-                (OnPacketSendRecv) Marshal.GetDelegateForFunctionPointer(header->Recv, typeof(OnPacketSendRecv));
-            _sendToServer =
-                (OnPacketSendRecv) Marshal.GetDelegateForFunctionPointer(header->Send, typeof(OnPacketSendRecv));
-            _getPacketLength =
-                (OnGetPacketLength) Marshal.GetDelegateForFunctionPointer(header->GetPacketLength,
-                    typeof(OnGetPacketLength));
-            _getPlayerPosition =
-                (OnGetPlayerPosition) Marshal.GetDelegateForFunctionPointer(header->GetPlayerPosition,
-                    typeof(OnGetPlayerPosition));
-            _castSpell = (OnCastSpell) Marshal.GetDelegateForFunctionPointer(header->CastSpell, typeof(OnCastSpell));
-            _getStaticImage =
-                (OnGetStaticImage) Marshal.GetDelegateForFunctionPointer(header->GetStaticImage,
-                    typeof(OnGetStaticImage));
-            _requestMove =
-                (RequestMove) Marshal.GetDelegateForFunctionPointer(header->RequestMove, typeof(RequestMove));
-            _setTitle = (OnSetTitle) Marshal.GetDelegateForFunctionPointer(header->SetTitle, typeof(OnSetTitle));
-            _uoFilePath =
-                (OnGetUOFilePath) Marshal.GetDelegateForFunctionPointer(header->GetUOFilePath, typeof(OnGetUOFilePath));
-            m_ClientVersion = new Version((byte) (header->ClientVersion >> 24), (byte) (header->ClientVersion >> 16),
-                (byte) (header->ClientVersion >> 8), (byte) header->ClientVersion).ToString();
+            _sendToClient = header.Recv;
+            _sendToServer = header.Send;
+            _getPacketLength = header.GetPacketLength;
+            _getPlayerPosition = header.GetPlayerPosition;
+            _castSpell = header.CastSpell;
+            _getStaticImage = header.GetStaticImage;
+            _requestMove = header.RequestMove;
+            _setTitle = header.SetTitle;
+            _uoFilePath = header.GetUOFilePath;
+            m_ClientVersion = new Version((byte) (header.ClientVersion >> 24), (byte) (header.ClientVersion >> 16),
+                (byte) (header.ClientVersion >> 8), (byte) header.ClientVersion).ToString();
             m_ClientRunning = true;
-            m_ClientWindow = header->HWND;
+            m_ClientWindow = header.HWND;
             _tick = Tick;
             _recv = OnRecv;
             _send = OnSend;
@@ -221,18 +209,18 @@ namespace Assistant
             _onDisconnected = OnDisconnected;
             _onFocusGained = OnFocusGained;
             _onFocusLost = OnFocusLost;
-            header->Tick = Marshal.GetFunctionPointerForDelegate(_tick);
-            header->OnRecv = Marshal.GetFunctionPointerForDelegate(_recv);
-            header->OnSend = Marshal.GetFunctionPointerForDelegate(_send);
-            header->OnHotkeyPressed = Marshal.GetFunctionPointerForDelegate(_onHotkeyPressed);
-            header->OnMouse = Marshal.GetFunctionPointerForDelegate(_onMouse);
-            header->OnPlayerPositionChanged = Marshal.GetFunctionPointerForDelegate(_onUpdatePlayerPosition);
-            header->OnClientClosing = Marshal.GetFunctionPointerForDelegate(_onClientClose);
-            header->OnInitialize = Marshal.GetFunctionPointerForDelegate(_onInitialize);
-            header->OnConnected = Marshal.GetFunctionPointerForDelegate(_onConnected);
-            header->OnDisconnected = Marshal.GetFunctionPointerForDelegate(_onDisconnected);
-            header->OnFocusGained = Marshal.GetFunctionPointerForDelegate(_onFocusGained);
-            header->OnFocusLost = Marshal.GetFunctionPointerForDelegate(_onFocusLost);
+            header.Tick = _tick;
+            header.OnRecv = _recv;
+            header.OnSend = _send;
+            header.OnHotkeyPressed = _onHotkeyPressed;
+            header.OnMouse = _onMouse;
+            header.OnPlayerPositionChanged = _onUpdatePlayerPosition;
+            header.OnClientClosing = _onClientClose;
+            header.OnInitialize = _onInitialize;
+            header.OnConnected = _onConnected;
+            header.OnDisconnected = _onDisconnected;
+            header.OnFocusGained = _onFocusGained;
+            header.OnFocusLost = _onFocusLost;
 
             return true;
         }
